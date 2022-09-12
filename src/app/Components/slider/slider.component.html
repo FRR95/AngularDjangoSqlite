@@ -1,0 +1,139 @@
+<script src="https://code.jquery.com/jquery-3.2.1.js"></script>
+<a href="#" class="left-arrow">&#10148;</a>
+<a href="#" class="right-arrow">&#10148;</a>
+<div id="carrusel">
+
+    <div class="carrusel">
+        <div class="product" id="product_0">
+            <h2>Plan Rojo</h2>
+            <p>El PSI para una explotación segura de la Propiedad Industrial e Intelectual de tu negocio.</p>
+            <p>
+                <strong>TE OFRECEMOS:</strong>
+            </p>
+            <p><span class="check-icon">&#10003;</span>Solicitud de registro de marca, patente, modelo de utilidad, diseño industrial o nombres de dominio</p>
+            <p><span class="check-icon">&#10003;</span>Renovación de una marca</p>
+            <p><span class="check-icon">&#10003;</span>Reclamaciones extrajudiciales sobre infracción de Propiedad Industrial, derechos de autor y ciberocupación</p>
+            <p><span class="check-icon">&#10003;</span>Con ejecución rápida</p>
+            <strong>PRECIO DESDE:</strong>
+            <p class="price-slider">500€</p>
+            <p>(más IVA)</p>
+            <button onclick="location.href='http://www.muchopc.com.mialias.net/plan-rojo/'" target="_blank" type="button" class="button-slider-products"><strong>Configurar plan</strong></button>
+        </div>
+        <div class="product" id="product_1">
+            <h2>Plan Azul</h2>
+            <p>El PSI para una explotación segura de la Propiedad Industrial e Intelectual de tu negocio.</p>
+            <p>
+                <strong>TE OFRECEMOS:</strong>
+            </p>
+            <p><span class="check-icon">&#10003;</span>Solicitud de registro de marca, patente, modelo de utilidad, diseño industrial o nombres de dominio</p>
+            <p><span class="check-icon">&#10003;</span>Renovación de una marca</p>
+            <p><span class="check-icon">&#10003;</span>Reclamaciones extrajudiciales sobre infracción de Propiedad Industrial, derechos de autor y ciberocupación</p>
+            <p><span class="check-icon">&#10003;</span>Con ejecución rápida</p>
+            <strong>PRECIO DESDE:</strong>
+            <p class="price-slider">500€</p>
+            <p>(más IVA)</p>
+            <button onclick="location.href='http://www.muchopc.com.mialias.net/plan-rojo/'" target="_blank" type="button" class="button-slider-products1"><strong>Configurar plan</strong></button>
+        </div>
+        <div class="product" id="product_2">
+            <h2>Plan Lila</h2>
+            <p>El PSI para una explotación segura de la Propiedad Industrial e Intelectual de tu negocio.</p>
+            <p>
+                <strong>TE OFRECEMOS:</strong>
+            </p>
+            <p><span class="check-icon">&#10003;</span>Solicitud de registro de marca, patente, modelo de utilidad, diseño industrial o nombres de dominio</p>
+            <p><span class="check-icon">&#10003;</span>Renovación de una marca</p>
+            <p><span class="check-icon">&#10003;</span>Reclamaciones extrajudiciales sobre infracción de Propiedad Industrial, derechos de autor y ciberocupación</p>
+            <p><span class="check-icon">&#10003;</span>Con ejecución rápida</p>
+            <strong>PRECIO DESDE:</strong>
+            <p class="price-slider">500€</p>
+            <p>(más IVA)</p>
+            <button onclick="location.href='http://www.muchopc.com.mialias.net/plan-rojo/'" target="_blank" type="button" class="button-slider-products2"><strong>Configurar plan</strong></button>
+        </div>
+        <div class="product" id="product_3">
+            <h2>Plan Naranja</h2>
+            <p>El PSI para una explotación segura de la Propiedad Industrial e Intelectual de tu negocio.</p>
+            <p>
+                <strong>TE OFRECEMOS:</strong>
+            </p>
+            <p><span class="check-icon">&#10003;</span>Solicitud de registro de marca, patente, modelo de utilidad, diseño industrial o nombres de dominio</p>
+            <p><span class="check-icon">&#10003;</span>Renovación de una marca</p>
+            <p><span class="check-icon">&#10003;</span>Reclamaciones extrajudiciales sobre infracción de Propiedad Industrial, derechos de autor y ciberocupación</p>
+            <p><span class="check-icon">&#10003;</span>Con ejecución rápida</p>
+            <strong>PRECIO DESDE:</strong>
+            <p class="price-slider">500€</p>
+            <p>(más IVA)</p>
+            <button onclick="location.href='http://www.muchopc.com.mialias.net/plan-rojo/'" target="_blank" type="button" class="button-slider-products3"><strong>Configurar plan</strong></button>
+        </div>
+        <div class="product" id="product_4">
+            <h2>Plan Verde</h2>
+            <p>El PSI para una explotación segura de la Propiedad Industrial e Intelectual de tu negocio.</p>
+            <p>
+                <strong>TE OFRECEMOS:</strong>
+            </p>
+            <p><span class="check-icon">&#10003;</span>Solicitud de registro de marca, patente, modelo de utilidad, diseño industrial o nombres de dominio</p>
+            <p><span class="check-icon">&#10003;</span>Renovación de una marca</p>
+            <p><span class="check-icon">&#10003;</span>Reclamaciones extrajudiciales sobre infracción de Propiedad Industrial, derechos de autor y ciberocupación</p>
+            <p><span class="check-icon">&#10003;</span>Con ejecución rápida</p>
+            <strong>PRECIO DESDE:</strong>
+            <p class="price-slider">500€</p>
+            <p>(más IVA)</p>
+            <button onclick="location.href='http://www.muchopc.com.mialias.net/plan-rojo/'" target="_blank" type="button" class="button-slider-products4"><strong>Configurar plan</strong></button>
+        </div>
+
+    </div>
+</div>
+<script>
+    /*$('.right-arrow').css('display', 'none');
+         $('.left-arrow').css('display', 'none');*/
+    var current = 0;
+
+    var imagenes = new Array();
+
+    $(document).ready(function() {
+        var numImages = 5;
+
+        $('button').on('click', function() {
+            $('button').css('background-color', 'white');
+            $('button').css('color', 'black');
+        });
+
+        $('.left-arrow').on('click', function() {
+            if (current > 0) {
+                current = current - 1;
+
+
+            } else {
+                current = numImages - 3;
+
+            }
+
+            $(".carrusel").animate({
+                "left": -($('#product_' + current).position().left)
+            }, 300);
+
+            return false;
+        });
+
+
+
+        $('.right-arrow').on('click', function() {
+            if (numImages > current + 3) {
+                current = current + 1;
+
+            } else {
+                current = 0;
+
+
+            }
+
+            $(".carrusel").animate({
+                "left": -($('#product_' + current).position().left)
+            }, 300);
+
+            return false;
+        });
+
+
+
+    });
+</script>

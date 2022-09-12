@@ -1,0 +1,168 @@
+#carrusel {
+    width: 1140px;
+    overflow: hidden;
+    height: 700px;
+    position: relative;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.left-arrow {
+    display: block;
+    position: absolute;
+    left: -60px;
+    z-index: 1;
+    top: 50%;
+    margin-top: -9px;
+    transform: rotate(180deg);
+    color: #6EC1E4;
+}
+
+.left-arrow:hover {
+    color: #30BDE6;
+}
+
+.right-arrow {
+    display: block;
+    position: absolute;
+    right: -50px;
+    z-index: 1;
+    top: 50%;
+    margin-top: -9px;
+    color: #6EC1E4;
+}
+
+.right-arrow:hover {
+    color: #30BDE6;
+}
+
+.carrusel {
+    width: 4000px;
+    left: 0px;
+    position: absolute;
+    z-index: 0;
+}
+
+.carrusel>div {
+    float: left;
+    height: 5803px;
+    margin-right: 15px;
+    width: 365px;
+    text-align: center;
+}
+
+.carrusel img {
+    cursor: pointer;
+}
+
+.product {
+    color: white;
+    padding-top: 50px;
+    padding-left: 20px;
+    padding-right: 20px;
+    /*padding-bottom: 50px;*/
+}
+
+.list-content {
+    list-style: none;
+}
+
+.list-content li:before {
+    content: '✓';
+}
+
+.check-icon {
+    padding-right: 5px;
+}
+
+.button-slider-products {
+    color: #ff6d6d;
+    ;
+    background-color: white;
+    border: none;
+}
+
+.button-slider-products:hover {
+    text-decoration: underline;
+    color: #ff6d6d;
+    ;
+    background-color: white;
+    border: none;
+}
+
+.button-slider-products1 {
+    color: #a4ceef;
+    background-color: white;
+    border: none;
+}
+
+.button-slider-products1:hover {
+    text-decoration: underline;
+    color: #a4ceef;
+    background-color: white;
+    border: none;
+}
+
+.button-slider-products2 {
+    color: #b6a5ff;
+    background-color: white;
+    border: none;
+}
+
+.button-slider-products2:hover {
+    text-decoration: underline;
+    color: #b6a5ff;
+    background-color: white;
+    border: none;
+}
+
+.button-slider-products3 {
+    color: #ffb175;
+    background-color: white;
+    border: none;
+}
+
+.button-slider-products3:hover {
+    text-decoration: underline;
+    color: #ffb175;
+    background-color: white;
+    border: none;
+}
+
+.button-slider-products4 {
+    color: #b0ca8f;
+    background-color: white;
+    border: none;
+}
+
+.button-slider-products4:hover {
+    text-decoration: underline;
+    color: #b0ca8f;
+    background-color: white;
+    border: none;
+}
+
+.price-slider {
+    font-size: 25px;
+    font-weight: bold;
+}
+
+#product_0 {
+    background-color: #ff6d6d;
+}
+
+#product_1 {
+    background-color: #a4ceef;
+}
+
+#product_2 {
+    background-color: #b6a5ff;
+}
+
+#product_3 {
+    background-color: #ffb175;
+}
+
+#product_4 {
+    background-color: #b0ca8f;
+}
