@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { ConectionsService } from 'src/app/services/conections.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-department',
@@ -7,9 +9,21 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DepartmentComponent implements OnInit {
 
-  constructor() { }
+  constructor(private service:ConectionsService,private toastr:ToastrService) { }
 
-  ngOnInit(): void {
+  DepartmentList:any=[];
+
+
+  ngOnInit():void {
+  this.DepList()
   }
 
+  DepList(){
+  this.service.getDepList().subscribe(data=>{
+  this.DepartmentList=data;
+  })
+  }
+  DepListSuccess(){
+    this.toastr.success('Departamento añadido correctamente');
+    }
 }
