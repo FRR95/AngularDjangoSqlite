@@ -38,6 +38,9 @@ export class AddEditEmployeeComponent implements OnInit {
     DateOfJoining:this.form.value.namedate,
     PhotoFileName:this.service.PhotoUrl+this.form.value.fotourl.replace(/^.*\\/, ""),
     };
+
+
+    
     this.LoadingGif=true;
     this.service.addEmployee(val).subscribe(res=>{
     alert(res.toString());
