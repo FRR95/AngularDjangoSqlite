@@ -36,7 +36,7 @@ export class AddEditEmployeeComponent implements OnInit {
     EmployeeName:this.form.value.nameemp,
     Department:this.form.value.namedep,
     DateOfJoining:this.form.value.namedate,
-    PhotoFileName:this.service.PhotoUrl+this.form.value.fotourl.replace(/^.*\\/, ""),
+    PhotoFileName:this.service.PhotoUrl+this.form.value.fotourl.replace(/^.*\\/, "")
     };
 
 
