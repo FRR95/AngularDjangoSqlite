@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ConectionsService } from 'src/app/services/conections.service';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-employee',
@@ -7,8 +9,11 @@ import { ConectionsService } from 'src/app/services/conections.service';
   styleUrls: ['./employee.component.css']
 })
 export class EmployeeComponent implements OnInit {
+  
+  formValue:any;
+  constructor(private service:ConectionsService,private fb: FormBuilder) {
 
-  constructor(private service:ConectionsService,) { }
+   }
 
   EmployeeList:any=[];
 

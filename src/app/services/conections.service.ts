@@ -6,8 +6,9 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class ConectionsService {
-readonly APIUrl = "http://127.0.0.1:8000/";
-readonly PhotoUrl = "http://127.0.0.1:8000/media/";
+readonly APIUrl = "http://127.0.0.1:8000";
+readonly PhotoUrl = 'http://127.0.0.1:8000/media/';
+
 
   constructor(private http:HttpClient) { }
 
@@ -28,30 +29,34 @@ deleteDepartment(val:any){
 
 
 
-
 getEmpList():Observable<any[]>{
   return this.http.get<any[]>(this.APIUrl + '/employee/');
   }
   
-  addEmployee(val:any){
+addEmployee(val:any){
     return this.http.post<any[]>(this.APIUrl + '/employee/',val);
-  }
+}
+
+addEmployeeCSV(val:any){
+  return this.http.post<any[]>(this.APIUrl + '/employee/',val);
+}
   
-  updateEmployee(val:any){
+updateEmployee(val:any){
     return this.http.put<any[]>(this.APIUrl + '/employee/',val);
-  }
-  deleteEmployee(val:any){
+}
+  
+deleteEmployee(val:any){
     return this.http.delete<any[]>(this.APIUrl + '/employee/',val);
-  }
+}
+
+UploadPhoto(val1:any):Observable<any[]>{
+  return this.http.post<any>(this.APIUrl+'/media/',val1);
+}
 
 
 
 
-  UploadPhoto(val:any):Observable<any[]>{
-    return this.http.post<any[]>(this.APIUrl + '/SaveFile/',val);
-    }
 
-    GetAllDepartmentNames():Observable<any[]>{
-      return this.http.get<any[]>(this.APIUrl + '/department/');
-      }
+
+
 }

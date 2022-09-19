@@ -2,17 +2,22 @@ from django.shortcuts import render
 from django.views.decorators.csrf import csrf_exempt
 from rest_framework.parsers import JSONParser
 from django.http.response import JsonResponse
+from rest_framework.parsers import FileUploadParser
+from rest_framework.response import Response
+from rest_framework.views import APIView
+from rest_framework import status
 
 
-from EmployeeApp.models import Departments,Employees 
-from EmployeeApp.serializers import DepartmentSerializer,EmployeeSerializer
+
+from EmployeeApp.models import Departments,Employees,CSVFile
+from EmployeeApp.serializers import DepartmentSerializer,EmployeeSerializer,CSVSerializer
 
 from django.core.files.storage import default_storage
 
 
 
 # Create your views here.
-
+ 
 @csrf_exempt
 def departmentApi(request,id=0):
    if request.method=='GET':
@@ -55,7 +60,9 @@ def employeeApi(request,id=0):
             employee_serializer.save()
             return JsonResponse ("Added Succesfully!!",safe=False)
        return JsonResponse ("Failed to Add.",safe=False)
-   
+
+
+       
    elif request.method=='PUT':
        employee_data = JSONParser().parse(request)
        employee=Employees.objects.get(EmployeeId=employee_data['EmployeeId'])
@@ -70,13 +77,57 @@ def employeeApi(request,id=0):
        employee.delete()
        return JsonResponse("DELETED SUCCESFULLY",safe=False)
 
+@csrf_exempt
+def CSVApi(request):
+      
+      parser_class = (FileUploadParser)
+      file_serializer = CSVSerializer(data=request.data)
+
+      if file_serializer.is_valid():
+          file_serializer.save()
+          return JsonResponse ("Uptdated Succesfully",safe=False)
+      return JsonResponse("Failed to Update",safe=False)
+
+
+
 
 @csrf_exempt
 def SaveFile(request):
-    file=request.FILES['myFile']
-    file_name = default_storage.save(file.name,file)
+    
+    file_name = default_storage.save(request)
 
     return JsonResponse("POSTED SUCCESFULLY THE FILE"+file_name+"!!",safe=False)
+
+@csrf_exempt
+def SaveFileCSV(request):
+    file=request.FILES[' ']
+    file_name = default_storage.save(file.name,file)
+
+    return JsonResponse("POSTED SUCCESFULLY THE CSVFILE"+file_name+"!!",safe=False)
+
+
+
+
+
+
+
+
+@csrf_exempt
+def post(request):
+    if request.method == 'POST':
+     file_serializer = CSVSerializer(data=request.data)
+    if file_serializer.is_valid():
+          file_serializer.save()
+          return JsonResponse('WIN')
+    return JsonResponse('FAIL')
+
+
+
+        
+
+
+
+
 
 
 

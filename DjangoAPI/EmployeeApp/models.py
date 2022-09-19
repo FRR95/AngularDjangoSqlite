@@ -1,3 +1,4 @@
+from distutils.command.upload import upload
 from django.db import models
 
 # Create your models here.
@@ -11,7 +12,17 @@ class Employees (models.Model):
   EmployeeName = models.CharField(max_length=100)
   Department = models.CharField(max_length=100)
   DateOfJoining = models.DateField()
-  PhotoFileName = models.CharField(max_length=100)
+  PhotoFileName = models.ImageField(null=True, blank=True)
+
+class CSVFile (models.Model):
+  CsvFileName = models.ImageField(max_length=100)
+  def __str__(self):
+        return self.file.name
+
+
+
+
+
 
 
 

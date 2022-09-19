@@ -8,6 +8,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 
 
+
+
 import {AppComponent}   from './app.component';
 import {NavMenu}   from './Components/mi-componente/mi-componente.components';
 import { FooterComponent } from './Components/footer/footer.component';
@@ -19,18 +21,13 @@ import { ConectionsService } from 'src/app/services/conections.service';
 import { AddEditDepartmentComponent } from './Components/add-edit-department/add-edit-department.component';
 import { AddEditEmployeeComponent } from './Components/add-edit-employee/add-edit-employee.component';
 
+
 const rutas: Routes = [
   { path: '', component: DepartmentComponent},
   { path: 'Departments', component:DepartmentComponent },
   { path: 'Employees', component:EmployeeComponent },
 
- 
-
-  
-  
-  
-  
-  { path: '**',redirectTo:'/' ,pathMatch:'full'}
+{ path: '**',redirectTo:'/' ,pathMatch:'full'}
   ];
 
 @NgModule({
@@ -43,7 +40,8 @@ const rutas: Routes = [
     DepartmentComponent,
     EmployeeComponent,
     AddEditDepartmentComponent,
-    AddEditEmployeeComponent
+    AddEditEmployeeComponent,
+
     
   ],
   imports: [
@@ -53,7 +51,9 @@ const rutas: Routes = [
     RouterModule.forRoot(rutas),
     FormsModule,
     ReactiveFormsModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+   
+    
 
 
     

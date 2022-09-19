@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from EmployeeApp.models import Departments,Employees
+from EmployeeApp.models import Departments,Employees,CSVFile
 
 class DepartmentSerializer(serializers.ModelSerializer):
     class Meta:
@@ -15,4 +15,11 @@ class EmployeeSerializer(serializers.ModelSerializer):
                 'Department',
                 'DateOfJoining',
                 'PhotoFileName',)
+
+class CSVSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = CSVFile
+        fields = ('CsvFileName')
+
+
         
