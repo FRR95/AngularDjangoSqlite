@@ -50,7 +50,7 @@ deleteEmployee(val:any){
 }
 
 UploadPhoto(val1:any):Observable<any[]>{
-  return this.http.post<any>(this.APIUrl+'/media/',val1);
+  return this.http.post<any>(this.PhotoUrl,val1);
 }
 
 

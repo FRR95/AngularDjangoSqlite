@@ -18,11 +18,11 @@ re_path (r'^department/([0-9]+)$',views.departmentApi),
 re_path(r'^employee/$',views.employeeApi),
 re_path(r'^employee/([0-9]+)$',views.employeeApi),
 
-re_path(r'^Employee/SaveFile/$',views.CSVApi),
-re_path(r'^Employee/SaveFile/([0-9]+)$',views.CSVApi),
+re_path(r'^Employee/SaveFile/$',views.SaveFile),
+re_path(r'^Employee/SaveFile/([0-9]+)$',views.SaveFile),
 
-re_path(r'^Image/SaveFile/$',views.post),
-re_path(r'^Image/SaveFile/([0-9]+)$',views.post),
+
+
 
 
 

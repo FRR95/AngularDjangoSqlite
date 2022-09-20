@@ -23,8 +23,8 @@ export class AddEditEmployeeComponent implements OnInit {
   EmployeeName:string;
   Department:string;
   DateOfJoining:Date;
-  PhotoFileName:File;
-  CsvFileName:File;
+  PhotoFileName:string;
+  CsvFileName:string;
 
 
   constructor(private service:ConectionsService,private fb: FormBuilder) { 

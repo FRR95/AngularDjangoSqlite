@@ -19,7 +19,7 @@ class EmployeeSerializer(serializers.ModelSerializer):
 class CSVSerializer(serializers.ModelSerializer):
     class Meta:
         model = CSVFile
-        fields = ('CsvFileName')
+        fields = "CsvFileName"
 
 
         

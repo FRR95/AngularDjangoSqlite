@@ -12,12 +12,11 @@ class Employees (models.Model):
   EmployeeName = models.CharField(max_length=100)
   Department = models.CharField(max_length=100)
   DateOfJoining = models.DateField()
-  PhotoFileName = models.ImageField(null=True, blank=True)
+  PhotoFileName = models.CharField(max_length=100)
 
 class CSVFile (models.Model):
-  CsvFileName = models.ImageField(max_length=100)
-  def __str__(self):
-        return self.file.name
+  CsvFileName = models.FileField(null=True, blank=True)
+
 
 
 

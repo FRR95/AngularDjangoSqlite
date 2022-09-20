@@ -77,7 +77,7 @@ def employeeApi(request,id=0):
        employee.delete()
        return JsonResponse("DELETED SUCCESFULLY",safe=False)
 
-@csrf_exempt
+"""@csrf_exempt
 def CSVApi(request):
       
       parser_class = (FileUploadParser)
@@ -86,16 +86,15 @@ def CSVApi(request):
       if file_serializer.is_valid():
           file_serializer.save()
           return JsonResponse ("Uptdated Succesfully",safe=False)
-      return JsonResponse("Failed to Update",safe=False)
+      return JsonResponse("Failed to Update",safe=False)"""
 
 
 
 
 @csrf_exempt
 def SaveFile(request):
-    
-    file_name = default_storage.save(request)
-
+    file=request.FILES['myfile']
+    file_name = default_storage.save(file.name,file)
     return JsonResponse("POSTED SUCCESFULLY THE FILE"+file_name+"!!",safe=False)
 
 @csrf_exempt
@@ -112,14 +111,15 @@ def SaveFileCSV(request):
 
 
 
-@csrf_exempt
+"""@csrf_exempt
 def post(request):
     if request.method == 'POST':
-     file_serializer = CSVSerializer(data=request.data)
+     file_data=JSONParser().parse(request)
+     file_serializer = CSVSerializer(data=file_data)
     if file_serializer.is_valid():
           file_serializer.save()
-          return JsonResponse('WIN')
-    return JsonResponse('FAIL')
+          return JsonResponse("WIN")
+    return JsonResponse("FAIL")"""
 
 
 
