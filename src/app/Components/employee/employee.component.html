@@ -1,1 +1,45 @@
-<p>employee works!</p>
+<html>
+<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">Añadir Empleado</button>
+
+
+
+
+
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">EmployeeId</th>
+            <th scope="col">EmployeeName</th>
+            <th scope="col">Department</th>
+            <th scope="col">DateOfJoining</th>
+            <th scope="col">PhotoFileName</th>
+
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let dataItem of EmployeeList">
+
+            <td>{{dataItem.EmployeeId}}</td>
+            <td>{{dataItem.EmployeeName}}</td>
+            <td>{{dataItem.Department}}</td>
+            <td>{{dataItem.DateOfJoining}}</td>
+            <td><img src="{{dataItem.PhotoFileName}}" alt="" height="120px" width="120px"></td>
+
+        </tr>
+    </tbody>
+</table>
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Añade un empleado</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <app-add-edit-employee></app-add-edit-employee>
+            </div>
+        </div>
+    </div>
+</div>
+
+</html>

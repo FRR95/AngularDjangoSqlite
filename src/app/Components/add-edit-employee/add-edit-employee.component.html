@@ -1,0 +1,37 @@
+<html>
+<div class="spinner-border text-primary" *ngIf="LoadingGif" role="status">
+    <span class="visually-hidden">Loading...</span>
+</div>
+<form [formGroup]="form" (ngSubmit)="addEmployee()" enctype="multipart/form-data">
+    <div class="mb-3">
+        <label for="exampleInputEmail1" class="form-label">Nombre del empleado</label>
+        <input type="text" class="form-control" formControlName="nameemp" id="exampleInputEmail1" aria-describedby="emailHelp">
+    </div>
+    <div class="mb-3">
+        <label for="exampleInputEmail1" class="form-label">Nombre del departamento</label>
+        <input type="text" class="form-control" id="exampleInputEmail1" formControlName="namedep" aria-describedby="emailHelp">
+    </div>
+    <div class="mb-3">
+        <label for="exampleInputEmail1" class="form-label">Fecha de inscripción</label>
+        <input type="date" class="form-control" id="exampleInputEmail1" formControlName="namedate" aria-describedby="emailHelp">
+    </div>
+    <div class="mb-3">
+        <label for="exampleInputEmail1" class="form-label">Foto del empleado</label>
+        <input type="file" class="form-control" id="exampleInputEmail1" formControlName="fotourl">
+    </div>
+
+    <button type="submit" class="btn btn-primary">Añadir</button>
+
+</form>
+<p class="mt-2">O</p>
+<form [formGroup]="formcsv" (ngSubmit)="addEmployeeViaCSV()" enctype="multipart/form-data">
+    <div class="mb-3">
+        <label for="exampleInputEmail1" class="form-label">AÑADE LA PUTA IMAGEN DE LOS COJONES</label>
+        <input type="file" class="form-control" id="exampleInputEmail1" formControlName="CsvFileUrl" aria-describedby="emailHelp">
+    </div>
+
+    <button type="submit" class="btn btn-primary">Añadir</button>
+
+</form>
+
+</html>
