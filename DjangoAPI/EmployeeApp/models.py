@@ -15,7 +15,11 @@ class Employees (models.Model):
   PhotoFileName = models.CharField(max_length=100)
 
 class CSVFile (models.Model):
-  CsvFileName = models.FileField(null=True, blank=True)
+  CsvFileName = models.ImageField(null=True, blank=True)
+
+class Background (models.Model):
+  backgroundcolorparamsId = models.AutoField(primary_key=True)
+  backgroundcolorparams = models.CharField(max_length=100)
 
 
 

@@ -1,0 +1,28 @@
+.circle {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    animation: anim 30s infinite alternate linear;
+}
+
+@keyframes anim {
+    0% {
+        background-color: aqua;
+    }
+    25% {
+        background-color: rgb(34, 44, 184);
+    }
+    50% {
+        background-color: rgb(214, 34, 34);
+    }
+    75% {
+        background-color: rgb(61, 243, 24);
+    }
+    100% {
+        background-color: rgb(228, 224, 26);
+    }
+}

@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from EmployeeApp.models import Departments,Employees,CSVFile
+from EmployeeApp.models import Departments,Employees,CSVFile,Background
 
 class DepartmentSerializer(serializers.ModelSerializer):
     class Meta:
@@ -20,6 +20,13 @@ class CSVSerializer(serializers.ModelSerializer):
     class Meta:
         model = CSVFile
         fields = "CsvFileName"
+
+        
+class Backgroundserializer(serializers.ModelSerializer):
+    class Meta:
+        model = Background
+        fields = ('backgroundcolorparamsId',
+        'backgroundcolorparams',)
 
 
         

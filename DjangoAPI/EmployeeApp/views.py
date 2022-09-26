@@ -9,8 +9,8 @@ from rest_framework import status
 
 
 
-from EmployeeApp.models import Departments,Employees,CSVFile
-from EmployeeApp.serializers import DepartmentSerializer,EmployeeSerializer,CSVSerializer
+from EmployeeApp.models import Departments,Employees,CSVFile,Background
+from EmployeeApp.serializers import DepartmentSerializer,EmployeeSerializer,CSVSerializer,Backgroundserializer
 
 from django.core.files.storage import default_storage
 
@@ -77,49 +77,74 @@ def employeeApi(request,id=0):
        employee.delete()
        return JsonResponse("DELETED SUCCESFULLY",safe=False)
 
-"""@csrf_exempt
-def CSVApi(request):
-      
-      parser_class = (FileUploadParser)
-      file_serializer = CSVSerializer(data=request.data)
 
-      if file_serializer.is_valid():
-          file_serializer.save()
-          return JsonResponse ("Uptdated Succesfully",safe=False)
-      return JsonResponse("Failed to Update",safe=False)"""
+@csrf_exempt
+def backgroundApi(request,id=0):
+   if request.method=='GET':
+       background=Background.objects.all()
+       background_serializer = Backgroundserializer(background,many=True) 
+       return JsonResponse( background_serializer.data,safe=False)
+   elif request.method == 'POST':
+       background_data=JSONParser().parse(request)
+       background_serializer = Backgroundserializer(data=background_data)
+       if background_serializer.is_valid():
+            background_serializer.save()
+            return JsonResponse ("Added Succesfully!!",safe=False)
+       return JsonResponse ("Failed to Add.",safe=False)
 
+   elif request.method=='PUT':
+       background_data = JSONParser().parse(request)
+       background=Background.objects.get(backgroundId=background_data['backgroundcolorparamsId'])
+       background_serializer=Backgroundserializer(background,data=background_data)
+       if background_serializer.is_valid():
+           background_serializer.save()
+           return JsonResponse("Uptdated Succesfully",safe=False)
+       return JsonResponse("Failed to Update",safe=False)
 
+   elif request.method=='DELETE':
+       background=Background.objects.get(backgroundcolorparamsId=id)
+       background.delete()
+       return JsonResponse("DELETED SUCCESFULLY",safe=False)
 
 
 @csrf_exempt
 def SaveFile(request):
-    file=request.FILES['myfile']
+    file=request.FILES
     file_name = default_storage.save(file.name,file)
     return JsonResponse("POSTED SUCCESFULLY THE FILE"+file_name+"!!",safe=False)
 
 @csrf_exempt
 def SaveFileCSV(request):
-    file=request.FILES[' ']
-    file_name = default_storage.save(file.name,file)
+   if request.method=='GET':
+       background=CSVFile.objects.all()
+       background_serializer = CSVSerializer(background,many=True) 
+       return JsonResponse( background_serializer.data,safe=False)
+   elif request.method == 'POST':
+       background_data=JSONParser().parse(request)
+       background_serializer = CSVSerializer(data=background_data)
+       if background_serializer.is_valid():
+            background_serializer.save()
+            return JsonResponse ("Added Succesfully!!",safe=False)
+       return JsonResponse ("Failed to Add.",safe=False)
 
-    return JsonResponse("POSTED SUCCESFULLY THE CSVFILE"+file_name+"!!",safe=False)
+   elif request.method=='PUT':
+       background_data = JSONParser().parse(request)
+       background=Background.objects.get(backgroundId=background_data['backgroundcolorparamsId'])
+       background_serializer=Backgroundserializer(background,data=background_data)
+       if background_serializer.is_valid():
+           background_serializer.save()
+           return JsonResponse("Uptdated Succesfully",safe=False)
+       return JsonResponse("Failed to Update",safe=False)
+
+   elif request.method=='DELETE':
+       background=Background.objects.get(backgroundcolorparamsId=id)
+       background.delete()
+       return JsonResponse("DELETED SUCCESFULLY",safe=False)
 
 
 
 
 
-
-
-
-"""@csrf_exempt
-def post(request):
-    if request.method == 'POST':
-     file_data=JSONParser().parse(request)
-     file_serializer = CSVSerializer(data=file_data)
-    if file_serializer.is_valid():
-          file_serializer.save()
-          return JsonResponse("WIN")
-    return JsonResponse("FAIL")"""
 
 
 

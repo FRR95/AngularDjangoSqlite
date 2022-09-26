@@ -10,8 +10,10 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class AddEditDepartmentComponent implements OnInit {
 form:FormGroup;
+formbackground:FormGroup;
 formValue:any;
 DepartmentName:string;
+backgroundcolorparams:string;
 LoadingGif=false;
 
 
@@ -22,6 +24,9 @@ constructor(private service:ConectionsService,private fb: FormBuilder,private to
   this.form = this.fb.group({
     namedep: ['']
     })
+    this.formbackground = this.fb.group({
+      nameback: ['']
+      })
  }
 
 
@@ -36,6 +41,15 @@ window.location.reload();
 this.LoadingGif=false;
 });
 
+}
+
+addbackground(){
+var val1={backgroundcolorparams:this.formbackground.value.nameback};
+
+this.service.uploadbackground(val1).subscribe(res=>{
+  window.location.reload();
+  this.LoadingGif=false;
+  });
 }
 
   ngOnInit(): void {

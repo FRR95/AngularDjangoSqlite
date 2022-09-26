@@ -49,8 +49,18 @@ deleteEmployee(val:any){
     return this.http.delete<any[]>(this.APIUrl + '/employee/',val);
 }
 
-UploadPhoto(val1:any):Observable<any[]>{
+UploadPhoto(val1:any){
   return this.http.post<any>(this.PhotoUrl,val1);
+}
+
+
+
+uploadbackground(val1:any){
+  return this.http.post<any[]>(this.APIUrl + '/background/',val1);
+}
+
+getbackground():Observable<any[]>{
+return this.http.get<any[]>(this.APIUrl + '/background/');
 }
 
 

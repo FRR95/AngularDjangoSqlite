@@ -12,4 +12,14 @@
 
 </form>
 
+<form [formGroup]="formbackground" (ngSubmit)="addbackground()">
+    <div class="mb-3">
+        <label for="exampleInputEmail1" class="form-label">Nombre del background</label>
+        <input type="text" class="form-control" formControlName="nameback" minlength="3" maxlength="16">
+    </div>
+
+    <button type="submit" class="btn btn-primary">Añadir</button>
+
+</form>
+
 </html>

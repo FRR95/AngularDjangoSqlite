@@ -23,8 +23,8 @@ export class AddEditEmployeeComponent implements OnInit {
   EmployeeName:string;
   Department:string;
   DateOfJoining:Date;
-  PhotoFileName:string;
-  CsvFileName:string;
+  PhotoFileName:File;
+  CsvFileName:File;
 
 
   constructor(private service:ConectionsService,private fb: FormBuilder) { 
@@ -75,7 +75,7 @@ export class AddEditEmployeeComponent implements OnInit {
   
       this.service.UploadPhoto(val1).subscribe(res=>{
       alert(res.toString());
-
+      window.location.reload();
       });
    
 

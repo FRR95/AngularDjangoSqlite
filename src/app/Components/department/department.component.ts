@@ -12,6 +12,7 @@ export class DepartmentComponent implements OnInit {
   constructor(private service:ConectionsService,private toastr:ToastrService) { }
 
   DepartmentList:any=[];
+  backgroundlist1:any=[];
   
   DepartmentIdFilter:string="";
   DepartmentNameFilter:string="";
@@ -19,7 +20,8 @@ export class DepartmentComponent implements OnInit {
 
 
   ngOnInit():void {
-  this.DepList()
+  this.DepList();
+  this.backgroundlist();
   }
 
   DepList(){
@@ -28,6 +30,12 @@ export class DepartmentComponent implements OnInit {
   this.DepartmentListWithoutFilter=data;
   })
   }
+
+  backgroundlist(){
+    this.service.getbackground().subscribe(data=>{
+    this.backgroundlist1=data;
+    })
+    }
   DepListSuccess(){
     this.toastr.success('Departamento añadido correctamente');
     }
