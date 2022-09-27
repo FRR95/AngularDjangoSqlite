@@ -131,7 +131,7 @@ MEDIA_ROOT = os.path.join(BASE_DIR,"media")
 
 CORS_ORIGIN_ALLOW_ALL = True
 CSRF_TRUSTED_ORIGINS = ['https://localhost:4200','http://127.0.0.1:8000/']
-ALLOWED_HOSTS = ['*']
+CALLOWED_HOSTS = ['*']
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
 

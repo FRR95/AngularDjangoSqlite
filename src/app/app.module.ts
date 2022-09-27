@@ -20,12 +20,16 @@ import { EmployeeComponent } from './Components/employee/employee.component';
 import { ConectionsService } from 'src/app/services/conections.service';
 import { AddEditDepartmentComponent } from './Components/add-edit-department/add-edit-department.component';
 import { AddEditEmployeeComponent } from './Components/add-edit-employee/add-edit-employee.component';
+import { LoginComponent } from './Components/login/login.component';
+import { SignInComponent } from './Components/sign-in/sign-in.component';
 
 
 const rutas: Routes = [
   { path: '', component: DepartmentComponent},
   { path: 'Departments', component:DepartmentComponent },
   { path: 'Employees', component:EmployeeComponent },
+  { path: 'signin', component:SignInComponent },
+  { path: 'login', component:LoginComponent },
 
 { path: '**',redirectTo:'/' ,pathMatch:'full'}
   ];
@@ -41,6 +45,8 @@ const rutas: Routes = [
     EmployeeComponent,
     AddEditDepartmentComponent,
     AddEditEmployeeComponent,
+    LoginComponent,
+    SignInComponent,
 
     
   ],

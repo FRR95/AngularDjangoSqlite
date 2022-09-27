@@ -1,0 +1,12 @@
+<html>
+<form [formGroup]="formlogin" (ngsubmit)="loginUser()">
+    <div class="mt-3">
+
+        <input type="email" class="form-control" placeholder="email" formControlName="useremail" minlength="3" maxlength="16">
+        <input type="password" class="form-control" placeholder="password" formControlName="userpass" minlength="3" maxlength="16">
+
+    </div>
+    <button type="submit" class="btn btn-primary">LogIn</button>
+</form>
+
+</html>
