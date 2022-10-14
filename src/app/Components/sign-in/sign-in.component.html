@@ -1,5 +1,5 @@
 <html>
-<form [formGroup]="formsignin" (ngsubmit)="addUser()">
+<form class="container my-5" [formGroup]="formsignin" (ngSubmit)="addUser()">
     <div class="mt-3">
         <input type="text" class="form-control" placeholder="user" formControlName="username" minlength="3" maxlength="16">
         <input type="email" class="form-control" placeholder="email" formControlName="useremail" minlength="3" maxlength="16">

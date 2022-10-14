@@ -13,6 +13,7 @@ form:FormGroup;
 formValue:any;
 DepartmentName:string;
 LoadingGif=false;
+private fileTmp:any;
 
 
 
@@ -36,6 +37,25 @@ window.location.reload();
 this.LoadingGif=false;
 });
 
+}
+
+getFile($event: any):void{
+  //TODO esto captura el archivo!
+  const [ file ] = $event.target.files;
+  this.fileTmp = {
+    fileRaw:file,
+    fileName:file.name
+  }
+}
+
+sendFile():void{
+
+  const body = new FormData();
+  body.append('myFile', this.fileTmp.fileRaw, this.fileTmp.fileName);
+  body.append('email','test@test.com')
+
+  this.service.sendPost(body)
+  .subscribe(res => console.log(res))
 }
 
   ngOnInit(): void {

@@ -12,10 +12,11 @@ export class DepartmentComponent implements OnInit {
   constructor(private service:ConectionsService,private toastr:ToastrService) { }
 
   DepartmentList:any=[];
-
+  ImageList:any=[];
 
   ngOnInit():void {
   this.DepList()
+  this.ImgList()
   }
 
   DepList(){
@@ -23,6 +24,13 @@ export class DepartmentComponent implements OnInit {
   this.DepartmentList=data;
   })
   }
+
+  
+  ImgList(){
+    this.service.getimg().subscribe(data=>{
+    this.ImageList=data;
+    })
+    }
   DepListSuccess(){
     this.toastr.success('Departamento añadido correctamente');
     }

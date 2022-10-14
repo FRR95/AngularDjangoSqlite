@@ -18,10 +18,12 @@ export class SignInComponent implements OnInit {
       userpassconfirm: ['']
       })
    }
-   addUser(){
 
-    
-    }
+
+addUser(){
+console.log(this.formsignin.value.username + '  ' + this.formsignin.value.useremail + '  ' +this.formsignin.value.userpass + '  ' +this.formsignin.value.userpassconfirm);
+}
+
   ngOnInit(): void {
   }
 

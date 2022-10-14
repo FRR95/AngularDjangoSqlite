@@ -1,8 +1,28 @@
-<ul>
-    <li><a [routerLink]="['/Departments']">{{Link1}}</a></li>
-    <li><a [routerLink]="['/Employees']">{{Link2}}</a></li>
-    <li><a [routerLink]="['/signin']">{{Link3}}</a></li>
-    <li><a [routerLink]="['/login']">{{Link4}}</a></li>
+<html>
+<nav class="navbar navbar-expand-lg bg-light">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="#">Navbar</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav mx-auto">
+                <li class="nav-item">
+                    <a class="nav-link" [routerLink]="['/']">Departments</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" [routerLink]="['Employees']">Employees</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" [routerLink]="['signin']">signin</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" [routerLink]="['login']">login</a>
+                </li>
 
+            </ul>
+        </div>
+    </div>
+</nav>
 
-</ul>
+</html>

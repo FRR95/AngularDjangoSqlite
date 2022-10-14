@@ -11,5 +11,15 @@
     <button type="submit" class="btn btn-primary">Añadir</button>
 
 </form>
+<div>
+    <div>
+        <span>Adjunta tu file</span>
+        <input type="file" (change)="getFile($event)">
+    </div>
+
+    <div>
+        <button (click)="sendFile()">Enviar</button>
+    </div>
+</div>
 
 </html>

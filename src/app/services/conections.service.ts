@@ -5,9 +5,14 @@ import { Observable } from 'rxjs';
 @Injectable({
   providedIn: 'root'
 })
+
+
+
+
 export class ConectionsService {
 readonly APIUrl = "http://127.0.0.1:8000";
 readonly PhotoUrl = 'http://127.0.0.1:8000/media/';
+url='/api';
 
 
   constructor(private http:HttpClient) { }
@@ -53,10 +58,24 @@ UploadPhoto(val1:any):Observable<any[]>{
   return this.http.post<any>(this.PhotoUrl,val1);
 }
 
+//NODEJS//
+sendPost(body:FormData):Observable<any>{
+  return this.http.post(`http://localhost:3000/upload`, body)
+}
 
+addEquipo(equipo:Equipo)
+{
+  return this.http.post(this.url, equipo);
+}
 
+getimg():Observable<any[]>{
+  return this.http.get<any[]>(`http://localhost:3000/upload`);
+  }
 
+}
 
-
-
+export interface Equipo{
+  id_equipo?:string;
+  nombre?:string;
+  logo?:string;
 }
