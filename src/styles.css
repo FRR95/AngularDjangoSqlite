@@ -1,4 +1,19 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500&display=swap');
 html {
     font-family: "Poppins", sans-serif;
+    background-color: rgb(233, 224, 104);
+}
+
+footer {
+    background-color: rgb(241, 229, 50);
+    font-family: "Poppins", sans-serif;
+}
+
+footer a {
+    color: black;
+}
+
+header {
+    background-color: rgb(241, 229, 50);
+    font-family: "Poppins", sans-serif;
 }

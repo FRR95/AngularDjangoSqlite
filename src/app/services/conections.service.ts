@@ -60,22 +60,36 @@ UploadPhoto(val1:any):Observable<any[]>{
 
 //NODEJS//
 sendPost(body:FormData):Observable<any>{
-  return this.http.post(`http://localhost:3000/upload`, body)
+  return this.http.post(`http://localhost:3000/apimedia`, body)
 }
 
-addEquipo(equipo:Equipo)
+getEquipos()
 {
-  return this.http.post(this.url, equipo);
+  return this.http.get('http://localhost:3000/api');
 }
-
-getimg():Observable<any[]>{
-  return this.http.get<any[]>(`http://localhost:3000/upload`);
+  //get un Equipo
+  getUnEquipo(id:string){
+    return this.http.get('http://localhost:3000/api'+'/'+id);
+  }
+  //agregar equipo
+  addEquipo(valteam:any)
+  {
+    return this.http.post('http://localhost:3000/api', valteam);
   }
 
+ deleteEquipo(id:string){
+  return this.http.delete('http://localhost:3000/api'+'/'+id);
 }
+  //modificar equipo
+  editEquipo(id:string,body:FormData){
+    return this.http.put('http://localhost:3000/api/'+id, body);
+  }
 
+
+}
 export interface Equipo{
   id_equipo?:string;
   nombre?:string;
   logo?:string;
+  img?:string;
 }

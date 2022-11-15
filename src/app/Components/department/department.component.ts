@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { ConectionsService } from 'src/app/services/conections.service';
+import { ConectionsService,Equipo } from 'src/app/services/conections.service';
 import { ToastrService } from 'ngx-toastr';
+import { Router} from '@angular/router';
+import { ThisReceiver, ThrowStmt } from '@angular/compiler';
 
 @Component({
   selector: 'app-department',
@@ -9,14 +11,28 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class DepartmentComponent implements OnInit {
 
-  constructor(private service:ConectionsService,private toastr:ToastrService) { }
+  equipo: Equipo={
+    id_equipo:'',
+    nombre:'',
+    logo:''
+  };
+  python_option=false;
+  nodejs_option=false;
+  showbutton=true;
+  hidebutton=false;
+  showbuttonnjs=true;
+  hidebuttonnjs=false;
+
+
+  constructor(private service:ConectionsService,private toastr:ToastrService,private router:Router) { }
 
   DepartmentList:any=[];
-  ImageList:any=[];
+  ListarEquipo:any=[];
 
   ngOnInit():void {
   this.DepList()
-  this.ImgList()
+  this.TeamList()
+ 
   }
 
   DepList(){
@@ -25,13 +41,60 @@ export class DepartmentComponent implements OnInit {
   })
   }
 
-  
-  ImgList(){
-    this.service.getimg().subscribe(data=>{
-    this.ImageList=data;
+  TeamList(){
+    this.service.getEquipos().subscribe(data=>{
+    this.ListarEquipo=data;
     })
     }
+
+
+    eliminar(id:string)
+    {
+      this.service.deleteEquipo(id).subscribe(
+        res=>{
+          console.log('equipo eliminado');
+          this.TeamList();
+          console.log(res)
+        });
+    }
+
+    modificar(id:string){
+      this.router.navigate(['/edit/'+id]);
+    }
+
+  
+
   DepListSuccess(){
     this.toastr.success('Departamento añadido correctamente');
     }
+
+    togglepython1(){
+
+    this.python_option=true;
+    this.showbutton=false;
+    this.hidebutton=true;
+    
+  }
+  togglepython2(){
+
+    this.python_option=false;
+    this.showbutton=true;
+    this.hidebutton=false;
+    
+  }
+
+  togglepython3(){
+
+    this.nodejs_option=true;
+    this.showbuttonnjs=false;
+    this.hidebuttonnjs=true;
+    
+  }
+  togglepython4(){
+
+    this.nodejs_option=false;
+    this.showbuttonnjs=true;
+    this.hidebuttonnjs=false;
+    
+  }
 }

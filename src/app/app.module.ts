@@ -30,6 +30,8 @@ const rutas: Routes = [
   { path: 'Employees', component:EmployeeComponent },
   { path: 'signin', component:SignInComponent },
   { path: 'login', component:LoginComponent },
+  { path: 'edit', component:EdadesComponent },
+  {path:'edit/:id', component:EdadesComponent},
 
 { path: '**',redirectTo:'/' ,pathMatch:'full'}
   ];

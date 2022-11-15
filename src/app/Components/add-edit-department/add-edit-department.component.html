@@ -11,15 +11,23 @@
     <button type="submit" class="btn btn-primary">Añadir</button>
 
 </form>
-<div>
-    <div>
-        <span>Adjunta tu file</span>
-        <input type="file" (change)="getFile($event)">
+
+<form [formGroup]="formteam" (ngSubmit)="addTeam()">
+    <div class="mb-3">
+        <label for="exampleInputEmail1" class="form-label">Nombre del equipo</label>
+        <input type="text" class="form-control" formControlName="nameteam" minlength="3" maxlength="16">
+    </div>
+    <div class="mb-3">
+        <label for="exampleInputEmail1" class="form-label">Nombre del logo</label>
+        <input type="text" class="form-control" formControlName="namelogo" minlength="3" maxlength="16">
     </div>
 
-    <div>
-        <button (click)="sendFile()">Enviar</button>
-    </div>
-</div>
+    <button type="submit" class="btn btn-primary">Añadir</button>
+
+</form>
+
+
+
+
 
 </html>

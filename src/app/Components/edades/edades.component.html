@@ -1,3 +1,4 @@
+<html>
 <h1>
     Este es el componente de edades
 </h1>
@@ -14,3 +15,26 @@
 <div *ngIf="edad < 18">
     Eres menor de edad,sigue jugando al among us
 </div>
+
+
+
+
+<div>
+    <div>
+        <span>Adjunta tu file</span>
+        <input type="file" (change)="getFile($event)">
+    </div>
+
+    <div>
+        <button (click)="modificar()">Enviar</button>
+    </div>
+</div>
+<div>
+    {{id}}
+    <input type="text">
+</div>
+<div>
+
+</div>
+
+</html>
