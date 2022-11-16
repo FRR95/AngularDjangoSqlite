@@ -89,7 +89,7 @@ app.delete('/api/:id', (req, res) => {
     conexion.query(sql, (err, rows, fields) => {
         if (err) throw err
         else {
-            res.json({ status: 'equipo eliminado:' + img })
+            res.json({ status: 'equipo eliminado:' })
         }
     })
 });

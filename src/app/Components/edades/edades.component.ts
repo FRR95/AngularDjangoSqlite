@@ -10,6 +10,10 @@ import {Router, ActivatedRoute} from '@angular/router';
 export class EdadesComponent implements OnInit {
 edad:number;
 id:any;
+name:any;
+logo:any;
+img:any;
+edadfalse=false;
 
 
 equipo: Equipo={
@@ -40,6 +44,9 @@ private fileTmp:any;
       );
     }
     this.id = this.activeRoute.snapshot.paramMap.get('id');
+    this.name = this.activeRoute.snapshot.paramMap.get('name');
+    this.logo = this.activeRoute.snapshot.paramMap.get('logo');
+    this.img = this.activeRoute.snapshot.paramMap.get('img');
   }
 
 aumentarEdad(){

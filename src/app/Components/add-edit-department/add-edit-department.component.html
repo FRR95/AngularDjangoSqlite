@@ -2,30 +2,38 @@
 <div class="spinner-border text-primary" *ngIf="LoadingGif" role="status">
     <span class="visually-hidden">Loading...</span>
 </div>
-<form [formGroup]="form" (ngSubmit)="addDepartment()">
-    <div class="mb-3">
-        <label for="exampleInputEmail1" class="form-label">Nombre del departamento</label>
-        <input type="text" class="form-control" formControlName="namedep" minlength="3" maxlength="6">
-    </div>
+<button type="button" class="btn" style="background-color:#e3e579;" (click)="togglepython1()" *ngIf="showbutton">ShowPython</button>
+<button type="button" class="btn" style="background-color:#e3e579;" (click)="togglepython2()" *ngIf="hidebutton">HidePython</button>
+<button type="button" class="btn" style="background-color:#e3e579;" (click)="togglepython3()" *ngIf="showbuttonnjs">ShowNodeJs</button>
+<button type="button" class="btn" style="background-color:#e3e579;" (click)="togglepython4()" *ngIf="hidebuttonnjs">HideNodeJs</button>
 
-    <button type="submit" class="btn btn-primary">Añadir</button>
+<div *ngIf="python_option">
+    <form [formGroup]="form" (ngSubmit)="addDepartment()">
+        <div class="mb-3">
+            <label for="exampleInputEmail1" class="form-label">Nombre del departamento</label>
+            <input type="text" class="form-control" formControlName="namedep" minlength="3" maxlength="6">
+        </div>
 
-</form>
+        <button type="submit" class="btn btn-primary">Añadir</button>
 
-<form [formGroup]="formteam" (ngSubmit)="addTeam()">
-    <div class="mb-3">
-        <label for="exampleInputEmail1" class="form-label">Nombre del equipo</label>
-        <input type="text" class="form-control" formControlName="nameteam" minlength="3" maxlength="16">
-    </div>
-    <div class="mb-3">
-        <label for="exampleInputEmail1" class="form-label">Nombre del logo</label>
-        <input type="text" class="form-control" formControlName="namelogo" minlength="3" maxlength="16">
-    </div>
+    </form>
+</div>
 
-    <button type="submit" class="btn btn-primary">Añadir</button>
+<div *ngIf="nodejs_option">
+    <form [formGroup]="formteam" (ngSubmit)="addTeam()">
+        <div class="mb-3">
+            <label for="exampleInputEmail1" class="form-label">Nombre del equipo</label>
+            <input type="text" class="form-control" formControlName="nameteam" minlength="3" maxlength="16">
+        </div>
+        <div class="mb-3">
+            <label for="exampleInputEmail1" class="form-label">Nombre del logo</label>
+            <input type="text" class="form-control" formControlName="namelogo" minlength="3" maxlength="16">
+        </div>
 
-</form>
+        <button type="submit" class="btn btn-primary">Añadir</button>
 
+    </form>
+</div>
 
 
 

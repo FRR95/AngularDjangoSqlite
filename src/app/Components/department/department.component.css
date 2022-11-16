@@ -1,0 +1,8 @@
+html {
+    background: linear-gradient(269deg, #e3e579 47%, #ffc107 80%);
+    background-size: 120% 120%;
+}
+
+.modal-content {
+    background-color: #ffc107;
+}

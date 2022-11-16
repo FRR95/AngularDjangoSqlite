@@ -16,12 +16,12 @@ export class DepartmentComponent implements OnInit {
     nombre:'',
     logo:''
   };
-  python_option=false;
-  nodejs_option=false;
-  showbutton=true;
-  hidebutton=false;
-  showbuttonnjs=true;
-  hidebuttonnjs=false;
+  python_option=true;
+  nodejs_option=true;
+  showbutton=false;
+  hidebutton=true;
+  showbuttonnjs=false;
+  hidebuttonnjs=true;
 
 
   constructor(private service:ConectionsService,private toastr:ToastrService,private router:Router) { }

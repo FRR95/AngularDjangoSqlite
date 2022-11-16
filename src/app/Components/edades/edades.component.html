@@ -1,19 +1,22 @@
 <html>
-<h1>
-    Este es el componente de edades
-</h1>
-<button (click)="aumentarEdad()">Aumentar edad</button>
-<button (click)="disminuirEdad()">Disminuir edad</button>
-<h3 [style.background]="edad >= 18 ? 'green' : 'red'" [style.color]="'white'">
-    Tu edad es de {{edad}} años
-</h3>
 
-<div *ngIf="edad >= 18">
-    Eres un hijo de la gran puta mayor de edad,tienes los huevos ya negros,ponte a trabajar
-</div>
+<div *ngIf="edadfalse">
+    <h1>
+        Este es el componente de edades
+    </h1>
+    <button (click)="aumentarEdad()">Aumentar edad</button>
+    <button (click)="disminuirEdad()">Disminuir edad</button>
+    <h3 [style.background]="edad >= 18 ? 'green' : 'red'" [style.color]="'white'">
+        Tu edad es de {{edad}} años
+    </h3>
 
-<div *ngIf="edad < 18">
-    Eres menor de edad,sigue jugando al among us
+    <div *ngIf="edad >= 18">
+        Eres un hijo de la gran puta mayor de edad,tienes los huevos ya negros,ponte a trabajar
+    </div>
+
+    <div *ngIf="edad < 18">
+        Eres menor de edad,sigue jugando al among us
+    </div>
 </div>
 
 
@@ -30,11 +33,11 @@
     </div>
 </div>
 <div>
-    {{id}}
-    <input type="text">
+    {{id}} {{name}} {{logo}} <img src="{{img}}" width="120px" height="120px">
 </div>
 <div>
 
 </div>
+
 
 </html>

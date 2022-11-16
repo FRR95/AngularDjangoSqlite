@@ -5,7 +5,7 @@ html {
 }
 
 footer {
-    background-color: rgb(241, 229, 50);
+    background-color: #ffc107;
     font-family: "Poppins", sans-serif;
 }
 
@@ -14,6 +14,6 @@ footer a {
 }
 
 header {
-    background-color: rgb(241, 229, 50);
+    background-color: #ffc107;
     font-family: "Poppins", sans-serif;
 }

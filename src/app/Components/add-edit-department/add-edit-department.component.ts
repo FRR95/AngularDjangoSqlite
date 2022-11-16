@@ -18,7 +18,13 @@ logo?:string;
 LoadingGif=false;
 private fileTmp:any;
 
+python_option=false;
+nodejs_option=false;
 
+showbutton=true;
+hidebutton=false;
+showbuttonnjs=true;
+hidebuttonnjs=false;
 
 
 constructor(private service:ConectionsService,private fb: FormBuilder,private toastr:ToastrService) {
@@ -82,6 +88,36 @@ sendFile():void{
 
   this.service.sendPost(body)
   .subscribe(res => console.log(res))
+}
+
+togglepython1(){
+
+  this.python_option=true;
+  this.showbutton=false;
+  this.hidebutton=true;
+  
+}
+togglepython2(){
+
+  this.python_option=false;
+  this.showbutton=true;
+  this.hidebutton=false;
+  
+}
+
+togglepython3(){
+
+  this.nodejs_option=true;
+  this.showbuttonnjs=false;
+  this.hidebuttonnjs=true;
+  
+}
+togglepython4(){
+
+  this.nodejs_option=false;
+  this.showbuttonnjs=true;
+  this.hidebuttonnjs=false;
+  
 }
 
   ngOnInit(): void {
