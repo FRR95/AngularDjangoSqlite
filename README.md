@@ -1,6 +1,7 @@
 # PaginaPruebaAngular
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 13.0.1.
+This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 13
+La intención de este proyecto es crear un proyecto de angular con un CRUD el cual puedas elegir hacerlo con un backend vía node js o con el framework Python Django
 
 ## Development server
 
