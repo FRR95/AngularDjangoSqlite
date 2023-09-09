@@ -34,7 +34,17 @@
 
     </form>
 </div>
+<form [formGroup]="forminit" (ngSubmit)="addInit()">
+    <div class="mb-3">
+        <label for="exampleInputEmail1" class="form-label">Nombre del equipo</label>
+        <input type="text" class="form-control" formControlName="nameInit" minlength="3" maxlength="16">
+    </div>
 
+    <button type="submit" class="btn btn-primary">Añadir</button>
+
+</form>
+
+{{init}}
 
 
 

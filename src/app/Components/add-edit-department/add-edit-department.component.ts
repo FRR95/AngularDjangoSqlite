@@ -10,7 +10,10 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class AddEditDepartmentComponent implements OnInit {
 form:FormGroup;
+init:any;
+init2:any;
 formteam:FormGroup;
+forminit:FormGroup;
 formValue:any;
 DepartmentName:string;
 nombre?:string;
@@ -40,12 +43,18 @@ constructor(private service:ConectionsService,private fb: FormBuilder,private to
 
       })
 
+      this.forminit = this.fb.group({
+        nameInit: ['']
+        })
+
       
  }
 
 
 
-
+ ngOnInit() {
+  this.init=this.forminit.value.nameInit; 
+  }
 
 addDepartment(){
 var val ={ DepartmentName:this.form.value.namedep};
@@ -67,6 +76,11 @@ addTeam(){
   });
   
   }
+
+  addInit(){
+    this.init=this.forminit.value.nameInit; 
+    
+    }
 
 
 
@@ -120,8 +134,7 @@ togglepython4(){
   
 }
 
-  ngOnInit(): void {
-  }
+
 
 }
 
