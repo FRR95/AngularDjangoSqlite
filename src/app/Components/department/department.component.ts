@@ -16,12 +16,6 @@ export class DepartmentComponent implements OnInit {
     nombre:'',
     logo:''
   };
-  python_option=true;
-  nodejs_option=true;
-  showbutton=false;
-  hidebutton=true;
-  showbuttonnjs=false;
-  hidebuttonnjs=true;
 
 
   constructor(private service:ConectionsService,private toastr:ToastrService,private router:Router) { }
@@ -68,33 +62,5 @@ export class DepartmentComponent implements OnInit {
     this.toastr.success('Departamento añadido correctamente');
     }
 
-    togglepython1(){
 
-    this.python_option=true;
-    this.showbutton=false;
-    this.hidebutton=true;
-    
-  }
-  togglepython2(){
-
-    this.python_option=false;
-    this.showbutton=true;
-    this.hidebutton=false;
-    
-  }
-
-  togglepython3(){
-
-    this.nodejs_option=true;
-    this.showbuttonnjs=false;
-    this.hidebuttonnjs=true;
-    
-  }
-  togglepython4(){
-
-    this.nodejs_option=false;
-    this.showbuttonnjs=true;
-    this.hidebuttonnjs=false;
-    
-  }
 }
