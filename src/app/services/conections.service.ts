@@ -85,6 +85,18 @@ getEquipos()
     return this.http.put('http://localhost:3000/api/'+id, body);
   }
 
+    //registro
+
+    verify_password(valemail:any)
+    {
+      return this.http.get('http://localhost:3000/verificar-correo', valemail);
+    }
+
+    register(valuser:any)
+    {
+      return this.http.post('http://localhost:3000/registro', valuser);
+    }
+
 
 }
 export interface Equipo{

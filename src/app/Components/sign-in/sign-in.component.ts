@@ -1,6 +1,7 @@
 import { Component, OnInit,Input } from '@angular/core';
 import { ConectionsService } from 'src/app/services/conections.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-sign-in',
@@ -9,19 +10,57 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 })
 export class SignInComponent implements OnInit {
   formsignin:FormGroup;
+  name:string;
+  email:string;
+  password:string;
+  correoDuplicado: boolean = false;
+  
 
-  constructor(private service:ConectionsService,private fb: FormBuilder) {
+  constructor(private service:ConectionsService,private fb: FormBuilder,private http: HttpClient) {
     this.formsignin = this.fb.group({
-      username: [''],
-      useremail: [''],
-      userpass: [''],
-      userpassconfirm: ['']
+      name: ['df'],
+      email: ['df'],
+      password: ['df']
       })
    }
 
-
+   
 addUser(){
-console.log(this.formsignin.value.username + '  ' + this.formsignin.value.useremail + '  ' +this.formsignin.value.userpass + '  ' +this.formsignin.value.userpassconfirm);
+  const valuser ={ 
+    name:this.formsignin.value.name,
+    email:this.formsignin.value.email,
+    password:this.formsignin.value.password
+  
+  };
+
+
+   
+    const email=this.formsignin.value.email
+   
+  
+
+
+  
+    
+  
+    this.service.verify_password(email).subscribe((response: any)=>{
+    if (response.correoDuplicado) {
+      // El correo ya existe, muestra el mensaje de error
+      this.correoDuplicado = true;
+      console.log('el email ya existe');
+    }
+    else{
+     /* this.service.register(valuser).subscribe(res=>{
+        this.correoDuplicado = false;
+        window.location.reload();
+       
+        });*/
+          
+    }
+   
+    });
+
+
 }
 
   ngOnInit(): void {

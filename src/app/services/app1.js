@@ -4,6 +4,7 @@ const express = require("express");
 const cors = require("cors");
 const multer = require("multer");
 const app = express();
+const bodyParser = require('body-parser');
 
 
 app.use(cors());
@@ -126,6 +127,53 @@ app.put('/api/:id', upload.single("myFile"), (req, res) => {
     })
     //----------------------------------
 
+
+
+    //------LOGIN AND SIGN IN--------------
+
+    //registro de usuario
+
+    // En el servidor Node.js
+app.get('/verificar-correo', (req, res) => {
+    const email = req.query.email;
+    let sql = `SELECT * FROM users_ WHERE email = ?`
+    // Realiza una consulta en la base de datos para verificar si el correo existe
+    conexion.query(sql,[email], (err, result) => {
+      if (err) {
+        console.error('Error al verificar el correo:', err);
+        res.status(500).json({ mensaje: 'Error al verificar el correo' });
+      } else {
+        if (result.length > 0) {
+          // El correo ya existe
+          res.json({ correoDuplicado: true });
+        } else {
+          // El correo no existe
+          res.json({ correoDuplicado: false });
+        }
+      }
+    });
+  });
+  
+app.post('/registro', (req, res) => {
+    const {name,email,password} = req.body;
+  
+
+
+    let sql = `insert into users_ (nombre,email,contraseña,biography,photo) values ('${name}','${email}','${password}','Hola!,soy ${name} y esta es mi biografia','http://localhost:3000/1666610687613.PNG')`
+    
+    conexion.query(sql, (err, result) => {
+        if (err) {
+            console.error('Error al registrar el usuario:', err);
+            res.status(500).json({ message: 'Error al registrar el usuario' });
+        } else {
+            console.log('Usuario registrado con éxito');
+            res.status(200).json({ message: 'Usuario registrado con éxito' });
+        }
+    });
+});
+
+//--------------------------------------------
+
 app.listen(port, () => {
-    console.log("Listo por el puerto", port);
+    console.log("Listo por el puert", port);
 });
