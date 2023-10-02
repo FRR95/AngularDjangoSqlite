@@ -31,6 +31,7 @@ const rutas: Routes = [
   { path: 'signin', component:SignInComponent },
   { path: 'login', component:LoginComponent },
   { path: 'edit', component:EdadesComponent },
+  { path: 'addedit', component:AddEditDepartmentComponent },
   {path:'edit/:id/:name/:logo/:img', component:EdadesComponent},
 
 { path: '**',redirectTo:'/' ,pathMatch:'full'}
