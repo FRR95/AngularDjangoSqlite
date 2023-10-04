@@ -10,40 +10,32 @@ import { HttpClient } from '@angular/common/http';
 })
 export class SignInComponent implements OnInit {
   formsignin:FormGroup;
+  formteam:FormGroup;
   name:string;
   email:string;
+  result:any;
   password:string;
-  correoDuplicado: boolean = false;
+  correoDuplicado: boolean=false;
   
 
   constructor(private service:ConectionsService,private fb: FormBuilder,private http: HttpClient) {
-    this.formsignin = this.fb.group({
-      name: ['df'],
-      email: ['df'],
-      password: ['df']
+    this.formteam = this.fb.group({
+      
+      email:['']
+
       })
    }
 
    
-addUser(){
+/*addUser(){
   const valuser ={ 
     name:this.formsignin.value.name,
     email:this.formsignin.value.email,
     password:this.formsignin.value.password
   
   };
-
-
-   
-    const email=this.formsignin.value.email
-   
-  
-
-
-  
-    
-  
-    this.service.verify_password(email).subscribe((response: any)=>{
+const email=this.formsignin.value.email
+   this.service.verify_password(email).subscribe((response: any)=>{
     if (response.correoDuplicado) {
       // El correo ya existe, muestra el mensaje de error
       this.correoDuplicado = true;
@@ -53,14 +45,27 @@ addUser(){
      /* this.service.register(valuser).subscribe(res=>{
         this.correoDuplicado = false;
         window.location.reload();
-       
-        });*/
-          
+       });
+        console.log('el email no existe');  }
+   });
+}*/
+
+registrarUsuario() {
+  // Verificar si el correo ya está registrado antes de enviar el formulario
+  this.service.verify_password(this.email).subscribe((response: any) => {
+    if (response.correoDuplicado) {
+      // El correo ya existe, muestra el mensaje de error
+      this.correoDuplicado = true;
+      console.log('este correo esta duplicado');
+    } else {
+      // El correo no existe, procede con el registro
+      this.correoDuplicado = false;
+      console.log('este correo no esta duplicado');
+
+      // Realiza el registro del usuario
+      // ...
     }
-   
-    });
-
-
+  });
 }
 
   ngOnInit(): void {

@@ -87,9 +87,9 @@ getEquipos()
 
     //registro
 
-    verify_password(valemail:any)
+    verify_password(email:any)
     {
-      return this.http.get('http://localhost:3000/verificar-correo', valemail);
+      return this.http.get('http://localhost:3000/verificarcorreo1', email);
     }
 
     register(valuser:any)

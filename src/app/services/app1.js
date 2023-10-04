@@ -134,25 +134,57 @@ app.put('/api/:id', upload.single("myFile"), (req, res) => {
     //registro de usuario
 
     // En el servidor Node.js
-app.get('/verificar-correo', (req, res) => {
+    app.get('/verificarcorreo', (req, res) => {
+        const {email} = req.body;
+      
+        // Realiza una consulta en la base de datos para verificar si el correo existe
+        conexion.query('SELECT * FROM users WHERE email = ?', [email], (err, rows) => {
+          if (err) {
+            console.error('Error al verificar el correo:', err);
+            res.status(500).json({ mensaje: 'Error al verificar el correo' });
+          } else {
+            if (rows.length > 0) {
+              // El correo ya existe
+              res.json({ correoDuplicado: true });
+            } else {
+              // El correo no existe
+              res.json({ correoDuplicado: false });
+            }
+          }
+        });
+      });
+
+      // En el servidor Node.js
+app.get('/verificarcorreo1', async (req, res) => {
     const email = req.query.email;
-    let sql = `SELECT * FROM users_ WHERE email = ?`
-    // Realiza una consulta en la base de datos para verificar si el correo existe
-    conexion.query(sql,[email], (err, result) => {
-      if (err) {
-        console.error('Error al verificar el correo:', err);
-        res.status(500).json({ mensaje: 'Error al verificar el correo' });
+  
+    try {
+      const results = await consultarCorreoDuplicado(email);
+      if (results.length > 0) {
+        // El correo ya existe
+        res.json({ correoDuplicado: true });
       } else {
-        if (result.length > 0) {
-          // El correo ya existe
-          res.json({ correoDuplicado: true });
-        } else {
-          // El correo no existe
-          res.json({ correoDuplicado: false });
-        }
+        // El correo no existe
+        res.json({ correoDuplicado: false });
       }
-    });
+    } catch (error) {
+      console.error('Error al verificar el correo:', error);
+      res.status(500).json({ mensaje: 'Error al verificar el correo' });
+    }
   });
+  
+  // Función para consultar el correo duplicado (encapsula la lógica de la consulta)
+  function consultarCorreoDuplicado(email) {
+    return new Promise((resolve, reject) => {
+      conexion.query('SELECT * FROM users WHERE email = ?', [email], (err, rows) => {
+        if (err) {
+          reject(err);
+        } else {
+          resolve(rows);
+        }
+      });
+    });
+  }
   
 app.post('/registro', (req, res) => {
     const {name,email,password} = req.body;
