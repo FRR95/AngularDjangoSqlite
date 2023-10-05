@@ -133,79 +133,31 @@ app.put('/api/:id', upload.single("myFile"), (req, res) => {
 
     //registro de usuario
 
-    // En el servidor Node.js
-    app.get('/verificarcorreo', (req, res) => {
-        const {email} = req.body;
-      
-        // Realiza una consulta en la base de datos para verificar si el correo existe
-        conexion.query('SELECT * FROM users WHERE email = ?', [email], (err, rows) => {
-          if (err) {
-            console.error('Error al verificar el correo:', err);
-            res.status(500).json({ mensaje: 'Error al verificar el correo' });
-          } else {
-            if (rows.length > 0) {
-              // El correo ya existe
-              res.json({ correoDuplicado: true });
-            } else {
-              // El correo no existe
-              res.json({ correoDuplicado: false });
-            }
-          }
-        });
-      });
 
-      // En el servidor Node.js
-app.get('/verificarcorreo1', async (req, res) => {
-    const email = req.query.email;
-  
-    try {
-      const results = await consultarCorreoDuplicado(email);
-      if (results.length > 0) {
-        // El correo ya existe
-        res.json({ correoDuplicado: true });
-      } else {
-        // El correo no existe
-        res.json({ correoDuplicado: false });
-      }
-    } catch (error) {
-      console.error('Error al verificar el correo:', error);
-      res.status(500).json({ mensaje: 'Error al verificar el correo' });
-    }
-  });
-  
-  // Función para consultar el correo duplicado (encapsula la lógica de la consulta)
-  function consultarCorreoDuplicado(email) {
-    return new Promise((resolve, reject) => {
-      conexion.query('SELECT * FROM users WHERE email = ?', [email], (err, rows) => {
-        if (err) {
-          reject(err);
-        } else {
-          resolve(rows);
-        }
-      });
-    });
-  }
+
+
   
 app.post('/registro', (req, res) => {
     const {name,email,password} = req.body;
   
 
 
-    let sql = `insert into users_ (nombre,email,contraseña,biography,photo) values ('${name}','${email}','${password}','Hola!,soy ${name} y esta es mi biografia','http://localhost:3000/1666610687613.PNG')`
+    let sql = `insert into users_ (nombre,email,contraseña) values ('${name}','${email}','${password}')`
     
     conexion.query(sql, (err, result) => {
-        if (err) {
-            console.error('Error al registrar el usuario:', err);
-            res.status(500).json({ message: 'Error al registrar el usuario' });
-        } else {
+            if(result){
             console.log('Usuario registrado con éxito');
             res.status(200).json({ message: 'Usuario registrado con éxito' });
         }
+            else{
+            res.json({ correoDuplicado: true });
+            }
+        
     });
 });
 
 //--------------------------------------------
 
 app.listen(port, () => {
-    console.log("Listo por el puert", port);
+    console.log("Listo por el puerto", port);
 });

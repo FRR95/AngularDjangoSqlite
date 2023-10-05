@@ -89,7 +89,7 @@ getEquipos()
 
     verify_password(email:any)
     {
-      return this.http.get('http://localhost:3000/verificarcorreo1', email);
+      return this.http.post('http://localhost:3000/verificarcorreo', email);
     }
 
     register(valuser:any)
