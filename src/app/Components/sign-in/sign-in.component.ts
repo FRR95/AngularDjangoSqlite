@@ -1,6 +1,6 @@
 import { Component, OnInit,Input } from '@angular/core';
 import { ConectionsService } from 'src/app/services/conections.service';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder,FormControl, FormGroup, Validators } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 
 @Component({
@@ -16,14 +16,17 @@ export class SignInComponent implements OnInit {
   result:any;
   password:string;
   correoDuplicado: boolean=false;
-  
+  nameform=true;
 
   constructor(private service:ConectionsService,private fb: FormBuilder,private http: HttpClient) {
     this.formsignin = this.fb.group({
-      name:[''],
-      email:[''],
-      password:[''],
-      })
+      name: ['', [Validators.required,Validators.minLength(5)
+      ]],
+      email:['', [Validators.required,Validators.pattern(/.+@.+\..+/)
+      ]],
+      password:['', [Validators.required,Validators.pattern(/^(?=[^A-Z]*[A-Z])(?=[^a-z]*[a-z])(?=\D*\d).{8,}$/)
+    ]],
+      });
    }
 
    
@@ -51,7 +54,8 @@ this.service.register(valuser).subscribe((response:any)=>{
 
 
 
-  ngOnInit(): void {
+  ngOnInit() {
+  
   }
 
 }
