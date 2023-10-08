@@ -5,6 +5,8 @@ const cors = require("cors");
 const multer = require("multer");
 const app = express();
 const bodyParser = require('body-parser');
+const jwt = require('jsonwebtoken');
+const bcrypt = require('bcrypt');
 
 
 app.use(cors());
@@ -142,20 +144,44 @@ app.post('/registro', (req, res) => {
   
 
 
-    let sql = `insert into users_ (nombre,email,contraseña) values ('${name}','${email}','${password}')`
+    let sql = `insert into usuarios (nombre,email,contraseña,biography,profile_photo) values ('${name}','${email}','${password}','Hola! Soy ${name} y esta es mi biografía','http://localhost:3000/1666610687613.PNG')`
     
     conexion.query(sql, (err, result) => {
-            if(result){
+        if (err){ 
+            res.json({ correoDuplicado: true });
+        console.log(err); 
+        }
+           if(result){
             console.log('Usuario registrado con éxito');
             res.status(200).json({ message: 'Usuario registrado con éxito' });
         }
-            else{
-            res.json({ correoDuplicado: true });
-            }
         
     });
 });
 
+    //inicio de sesion del usuario
+
+    app.post('/login', (req, res) => {
+        const { username, password } = req.body;
+        let sql = `select nombre from usuarios where nombre='${username}' `
+      
+        // Find the user in the sample data (replace with a database query)
+        const user = conexion.query(sql);
+      
+        if (!user) {
+          return res.status(401).json({ message: 'User not found' });
+        }
+      
+        // Verify the password (replace with bcrypt compare)
+        if (bcrypt.compareSync(password, user.passwordHash)) {
+          // Generate a JWT token
+          const token = jwt.sign({ userId: user.id, username: user.username }, secretKey, { expiresIn: '1h' });
+      
+          return res.json({ token });
+        } else {
+          return res.status(401).json({ message: 'Invalid password' });
+        }
+      });
 //--------------------------------------------
 
 app.listen(port, () => {

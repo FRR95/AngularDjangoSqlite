@@ -1,5 +1,5 @@
 <html>
-<form [formGroup]="formlogin" (ngsubmit)="loginUser()">
+<form class="container py-5" [formGroup]="formlogin" (submit)="loginUser()">
     <div class="mt-3">
 
         <input type="email" class="form-control" placeholder="email" formControlName="useremail" minlength="3" maxlength="16">

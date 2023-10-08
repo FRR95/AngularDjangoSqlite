@@ -1,13 +1,24 @@
 <html>
 <form class="container py-5" [formGroup]="formsignin"  (submit)="addUser()">
     <div class="mt-3">
+        <label class="error" *ngIf="!this.formsignin.get('name').valid"> <span class="error-message">*El nombre tiene que tener una longitud minima de 5 caracteres</span></label>
+        <label class="success" *ngIf="this.formsignin.get('name').valid"> <span class="error-message"><i class="bi bi-check"></i></span></label>
         <input type="text" class="form-control" placeholder="user" autocomplete="off"  formControlName="name">
-        <input type="email" class="form-control" placeholder="email" autocomplete="off" formControlName="email">
-        <input type="password" class="form-control" placeholder="password" autocomplete="off" formControlName="password">
-        <div style="color:white" *ngIf="correoDuplicado" class="error-message">Este correo ya está registrado.</div>
-        <div *ngIf="!this.formsignin.get('name').valid"> <span class="error-message">name is required and should be at least 8 characters long.</span></div>
+        <label class="error" *ngIf="!this.formsignin.get('email').valid"> <span class="error-message">*Correo no válido</span></label>
+        <label class="success" *ngIf="this.formsignin.get('email').valid"> <span class="error-message"><i class="bi bi-check"></i></span></label>
+<input type="email" class="form-control" placeholder="email" autocomplete="off" formControlName="email">
+<label class="error" *ngIf="!this.formsignin.get('password').valid"> <span class="error-message">*La contraseña tiene que tener como mínimo una letra mminuscula,una mayúscula ,un numero y tener como minimo 8 caracteres de longitud</span></label>
+                <label class="success" *ngIf="this.formsignin.get('password').valid"> <span class="error-message"><i class="bi bi-check"></i></span></label>
+
+        <input type="password" class="form-control mb-3" placeholder="password" autocomplete="off" formControlName="password">
+        
+        
     </div>
-    <button type="submit" [disabled]="!formsignin.valid" class="btn btn-primary">SignIn</button>
+    <button type="submit" [disabled]="!formsignin.valid" class="btn mb-2">Registrarte</button>
+    <label class="error ms-2" *ngIf="!this.formsignin.valid"> <span class="error-message"><i class="bi bi-x-circle"></i></span></label>
+    <label class="success ms-2" *ngIf="this.formsignin.valid"> <span class="error-message"><i class="bi bi-check "></i></span></label>
+
+    <div style="color:rgb(255, 0, 0)" *ngIf="correoDuplicado" class="error-message">Este correo o el nombre de usuario ya está registrado.</div>
 </form>
 
 

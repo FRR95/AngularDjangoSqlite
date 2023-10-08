@@ -97,6 +97,11 @@ getEquipos()
       return this.http.post('http://localhost:3000/registro', valuser);
     }
 
+    login(valuser:any)
+    {
+      return this.http.post('http://localhost:3000/login', valuser);
+    }
+
 
 }
 export interface Equipo{

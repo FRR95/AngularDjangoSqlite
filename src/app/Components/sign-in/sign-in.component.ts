@@ -39,13 +39,9 @@ addUser(){
   };
 this.service.register(valuser).subscribe((response:any)=>{
   if (response.correoDuplicado) {
-    // El correo ya existe, muestra el mensaje de error
     this.correoDuplicado = true;
   } else {
-    // El correo no existe, procede con el registro
-    this.correoDuplicado = false;
-    // Realiza el registro del usuario
-    // ...
+    window.location.reload();
   }
 });
        
