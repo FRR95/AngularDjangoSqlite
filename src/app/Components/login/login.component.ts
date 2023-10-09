@@ -1,6 +1,8 @@
 import { Component, OnInit,Input } from '@angular/core';
 import { ConectionsService } from 'src/app/services/conections.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { HttpClient } from '@angular/common/http';
+
 
 @Component({
   selector: 'app-login',
@@ -9,27 +11,34 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 })
 export class LoginComponent implements OnInit {
   formlogin:FormGroup;
+  username: string;
+  password: string;
   constructor(private service:ConectionsService,private fb: FormBuilder) {
 
     this.formlogin = this.fb.group({
       username: [''],
-      password: [''],
+      userpass: [''],
       })
    }
 
    loginUser(){
     const valuser ={ 
-      email:this.formlogin.value.username,
-      password:this.formlogin.value.password
+      username:this.formlogin.value.username,
+      password:this.formlogin.value.userpass
     
     };
-    this.service.login(valuser).subscribe(
+   
+
+   
+    this.service.login(this.username).subscribe(
       (response:any) => {
         // Successful login; handle response (e.g., store token and navigate to a protected route)
         const token = response.token;
         // Store the token securely (e.g., in local storage or a cookie)
         localStorage.setItem('token', token);
         // Navigate to a protected route
+
+        
         window.location.reload();
       },
       (error) => {

@@ -9,11 +9,15 @@ const jwt = require('jsonwebtoken');
 const bcrypt = require('bcrypt');
 
 
+
+
+
 app.use(cors());
 app.use(express.json());
-
+app.use(bodyParser.json());
+app.use(express.urlencoded({ extended: false }));
 app.use(express.static("./public"));
-app.use(require('./rutas'))
+
 
 const port = process.env.PORT || 3000;
 
@@ -144,7 +148,7 @@ app.post('/registro', (req, res) => {
   
 
 
-    let sql = `insert into usuarios (nombre,email,contraseña,biography,profile_photo) values ('${name}','${email}','${password}','Hola! Soy ${name} y esta es mi biografía','http://localhost:3000/1666610687613.PNG')`
+    let sql = `insert into usuarios (nombre,email,contraseña,passwordHash,biography,profile_photo) values ('${name}','${email}','${password}','${password}','Hola! Soy ${name} y esta es mi biografía','http://localhost:3000/1666610687613.PNG')`
     
     conexion.query(sql, (err, result) => {
         if (err){ 
@@ -158,29 +162,37 @@ app.post('/registro', (req, res) => {
         
     });
 });
-
     //inicio de sesion del usuario
 
     app.post('/login', (req, res) => {
-        const { username, password } = req.body;
-        let sql = `select nombre from usuarios where nombre='${username}' `
+     
+        const  {username}  = req.body;
+        const  {password}  = '18Noviembre95';
+        //const {  password } = req.body;
+        // Replace with a database query to fetch user data
+        const sql = `SELECT id, nombre, passwordHash FROM usuarios WHERE nombre='franky'`;
+        const sql1 = 'SELECT * FROM usuarios';
       
-        // Find the user in the sample data (replace with a database query)
-        const user = conexion.query(sql);
+       conexion.query(sql, (err, result,rows) => {
+        if (err) {
+            console.error('Error:', err);
+          }
+         if (result.length === 0) {
+            return res.status(401).json({ message: 'User'+username+' not found' });
+          }
       
-        if (!user) {
-          return res.status(401).json({ message: 'User not found' });
-        }
-      
-        // Verify the password (replace with bcrypt compare)
-        if (bcrypt.compareSync(password, user.passwordHash)) {
-          // Generate a JWT token
-          const token = jwt.sign({ userId: user.id, username: user.username }, secretKey, { expiresIn: '1h' });
-      
-          return res.json({ token });
-        } else {
-          return res.status(401).json({ message: 'Invalid password' });
-        }
+          
+          
+          
+           const user = result[0];
+         if (bcrypt.compareSync(password, user.passwordHash)) {
+            // Generate a JWT token
+            const token = jwt.sign({ userId: user.id, username: user.nombre }, secretKey, { expiresIn: '1h' });
+            return res.json({ token });
+          } else {
+            return res.status(401).json({ message: 'Invalid password' });
+          }
+        });
       });
 //--------------------------------------------
 

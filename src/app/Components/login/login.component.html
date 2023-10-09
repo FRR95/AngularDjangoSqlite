@@ -1,12 +1,16 @@
 <html>
-<form class="container py-5" [formGroup]="formlogin" (submit)="loginUser()">
-    <div class="mt-3">
-
-        <input type="email" class="form-control" placeholder="email" formControlName="useremail" minlength="3" maxlength="16">
-        <input type="password" class="form-control" placeholder="password" formControlName="userpass" minlength="3" maxlength="16">
-
+<form  (ngSubmit)="loginUser()">
+    <div>
+      <label for="username">Username/Email:</label>
+      <input type="text" id="username" name="username" autocomplete="off" [(ngModel)]="username" >
     </div>
-    <button type="submit" class="btn btn-primary">LogIn</button>
-</form>
+    <div>
+      <label for="password">Password:</label>
+      <input type="password" id="password" name="password" autocomplete="off" [(ngModel)]="password" >
+    </div>
+    <button type="submit">Login</button>
+  </form>
+
+{{username}}
 
 </html>
