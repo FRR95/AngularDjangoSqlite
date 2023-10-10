@@ -2,6 +2,7 @@ import { Component, OnInit,Input } from '@angular/core';
 import { ConectionsService } from 'src/app/services/conections.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
+import jwt_decode from 'jwt-decode';
 
 
 @Component({
@@ -13,7 +14,7 @@ export class LoginComponent implements OnInit {
   formlogin:FormGroup;
   username: string;
   password: string;
-  constructor(private service:ConectionsService,private fb: FormBuilder) {
+  constructor(private service:ConectionsService,private fb: FormBuilder,private http: FormBuilder) {
 
     this.formlogin = this.fb.group({
       username: [''],
@@ -28,7 +29,9 @@ export class LoginComponent implements OnInit {
     
     };
    
-
+    const formData = new URLSearchParams();
+    formData.set('username', this.username);
+    formData.set('password', this.password);
    
     this.service.login(this.username).subscribe(
       (response:any) => {
@@ -39,12 +42,18 @@ export class LoginComponent implements OnInit {
         // Navigate to a protected route
 
         
-        window.location.reload();
+        if (token) {
+          // Decode the token to access its payload
+          const decodedToken = jwt_decode(token);
+        
+          // Now, you can access the username or other information from the token payload
+          const username = decodedToken['username'];
+          console.log('Username:', username);
+        } else {
+          console.log('Token not found.');
+        }
       },
-      (error) => {
-        // Handle login error (e.g., display an error message)
-        console.error('Login error:', error);
-      }
+    
     );
    }
 

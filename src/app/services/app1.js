@@ -7,6 +7,7 @@ const app = express();
 const bodyParser = require('body-parser');
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcrypt');
+var urlencodedParser = bodyParser.urlencoded({ extended: false })
 
 
 
@@ -15,7 +16,6 @@ const bcrypt = require('bcrypt');
 app.use(cors());
 app.use(express.json());
 app.use(bodyParser.json());
-app.use(express.urlencoded({ extended: false }));
 app.use(express.static("./public"));
 
 
@@ -164,13 +164,14 @@ app.post('/registro', (req, res) => {
 });
     //inicio de sesion del usuario
 
-    app.post('/login', (req, res) => {
-     
-        const  {username}  = req.body;
-        const  {password}  = '18Noviembre95';
+    app.post('/login',urlencodedParser, (req, res) => {
+      const {username} =req.body
+        console.log(username);
+        
+        
         //const {  password } = req.body;
         // Replace with a database query to fetch user data
-        const sql = `SELECT id, nombre, passwordHash FROM usuarios WHERE nombre='franky'`;
+      /*  const sql = `SELECT id, nombre, passwordHash,contraseña FROM usuarios WHERE nombre='franky'`;
         const sql1 = 'SELECT * FROM usuarios';
       
        conexion.query(sql, (err, result,rows) => {
@@ -185,14 +186,16 @@ app.post('/registro', (req, res) => {
           
           
            const user = result[0];
-         if (bcrypt.compareSync(password, user.passwordHash)) {
+          
+           
+         if (bcrypt.compareSync(user.contraseña, user.passwordHash)) {
             // Generate a JWT token
             const token = jwt.sign({ userId: user.id, username: user.nombre }, secretKey, { expiresIn: '1h' });
             return res.json({ token });
           } else {
             return res.status(401).json({ message: 'Invalid password' });
           }
-        });
+        });*/
       });
 //--------------------------------------------
 
