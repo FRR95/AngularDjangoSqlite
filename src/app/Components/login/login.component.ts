@@ -18,31 +18,30 @@ export class LoginComponent implements OnInit {
 
     this.formlogin = this.fb.group({
       username: [''],
-      userpass: [''],
+      password: [''],
       })
    }
 
    loginUser(){
-    const valuser ={ 
+    const loginUser ={ 
       username:this.formlogin.value.username,
-      password:this.formlogin.value.userpass
+      password:this.formlogin.value.password
     
     };
    
-    const formData = new URLSearchParams();
-    formData.set('username', this.username);
-    formData.set('password', this.password);
+
    
-    this.service.login(this.username).subscribe(
+    this.service.login(loginUser).subscribe(
       (response:any) => {
         // Successful login; handle response (e.g., store token and navigate to a protected route)
         const token = response.token;
+        console.log(token);
         // Store the token securely (e.g., in local storage or a cookie)
         localStorage.setItem('token', token);
         // Navigate to a protected route
 
         
-        if (token) {
+       if (token) {
           // Decode the token to access its payload
           const decodedToken = jwt_decode(token);
         

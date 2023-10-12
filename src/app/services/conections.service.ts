@@ -97,9 +97,9 @@ getEquipos()
       return this.http.post('http://localhost:3000/registro', valuser);
     }
 
-    login(username:any)
+    login(loginUser:any)
     {
-      return this.http.post('http://localhost:3000/login', username);
+      return this.http.post('http://localhost:3000/login', loginUser);
     }
 
 

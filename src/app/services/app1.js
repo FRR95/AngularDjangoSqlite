@@ -164,38 +164,47 @@ app.post('/registro', (req, res) => {
 });
     //inicio de sesion del usuario
 
-    app.post('/login',urlencodedParser, (req, res) => {
-      const {username} =req.body
-        console.log(username);
+    app.post('/login', (req, res) => {
+
+    const {username}=req.body;   
+    const {password}=req.body;     
         
         
-        //const {  password } = req.body;
-        // Replace with a database query to fetch user data
-      /*  const sql = `SELECT id, nombre, passwordHash,contraseña FROM usuarios WHERE nombre='franky'`;
-        const sql1 = 'SELECT * FROM usuarios';
+        let sql = `SELECT * FROM usuarios WHERE nombre="${username}" and contraseña="${password}";`;
       
-       conexion.query(sql, (err, result,rows) => {
-        if (err) {
+      
+        conexion.query(`SELECT * FROM usuarios WHERE nombre='${username}' and contraseña=?;`,[password] , (err, result,rows) => {
+
+        const user = result[0];
+       
+     
+      
+
+        
+     if (err) {
             console.error('Error:', err);
           }
          if (result.length === 0) {
             return res.status(401).json({ message: 'User'+username+' not found' });
           }
-      
+    
+        
           
-          
-          
-           const user = result[0];
-          
+
            
-         if (bcrypt.compareSync(user.contraseña, user.passwordHash)) {
+           
+            
+          
+      if (bcrypt.compareSync(password, user.passwordHash)) {
             // Generate a JWT token
             const token = jwt.sign({ userId: user.id, username: user.nombre }, secretKey, { expiresIn: '1h' });
-            return res.json({ token });
+            return res.json( token );
+          
           } else {
             return res.status(401).json({ message: 'Invalid password' });
+            
           }
-        });*/
+        });
       });
 //--------------------------------------------
 
