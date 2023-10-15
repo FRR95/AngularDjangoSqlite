@@ -1,0 +1,25 @@
+.error{
+    color: red;
+    }
+    .success{
+        color: rgb(193, 255, 50);
+    }
+.btn{
+    background-color:black ;
+    color: white;
+    border: solid 1px rgb(255, 255, 255);
+    border-radius:6px;
+    }
+    
+    .btn:hover{
+        background-color:rgb(255, 255, 255) ;
+        
+        color: rgb(0, 0, 0);
+        }
+ .container{
+    border: 1px solid rgb(255, 255, 255);
+    border-radius: 6px;
+ }
+ p{
+color:white;
+ }

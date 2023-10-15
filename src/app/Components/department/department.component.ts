@@ -17,6 +17,8 @@ export class DepartmentComponent implements OnInit {
     logo:''
   };
 
+ 
+
 
   constructor(private service:ConectionsService,private toastr:ToastrService,private router:Router) { }
 

@@ -175,35 +175,34 @@ app.post('/registro', (req, res) => {
       
         conexion.query(`SELECT * FROM usuarios WHERE nombre='${username}' and contraseña=?;`,[password] , (err, result,rows) => {
 
-        const user = result[0];
+        
        
-     
+     if(result.length===0){
+    return res.json({ noresult: true });
+     }
       
 
         
-     if (err) {
+    if (err) {
             console.error('Error:', err);
           }
-         if (result.length === 0) {
-            return res.status(401).json({ message: 'User'+username+' not found' });
-          }
+       
     
         
           
-
-           
+         const user = result[0];
            
             
           
-      if (bcrypt.compareSync(password, user.passwordHash)) {
-            // Generate a JWT token
-            const token = jwt.sign({ userId: user.id, username: user.nombre }, secretKey, { expiresIn: '1h' });
-            return res.json( token );
+      if (bcrypt.compare(password, user.passwordHash)) {
+           const token = jwt.sign({ userId: user.id, username: user.nombre }, secretKey='18Noviembre95', {  expiresIn: '1h' });
+           return res.json( {token} );
+          
+            
           
           } else {
             return res.status(401).json({ message: 'Invalid password' });
-            
-          }
+            }
         });
       });
 //--------------------------------------------

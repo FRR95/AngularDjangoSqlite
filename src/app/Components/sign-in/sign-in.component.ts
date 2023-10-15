@@ -17,6 +17,7 @@ export class SignInComponent implements OnInit {
   password:string;
   correoDuplicado: boolean=false;
   nameform=true;
+  
 
   constructor(private service:ConectionsService,private fb: FormBuilder,private http: HttpClient) {
     this.formsignin = this.fb.group({
