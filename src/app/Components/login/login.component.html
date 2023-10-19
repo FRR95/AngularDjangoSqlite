@@ -28,7 +28,7 @@
 
   <p>Bienvenido, {{ tokenusername }} </p>
   <p>Bienvenido, {{ tokenuserid }} </p>
-
+<button (click)="logout()">Cerrar sesion</button>
 
 <div *ngIf="token_invalid">
   <p>No se aencontrado el usuario o la contraseña es incorrecta </p>

@@ -16,12 +16,16 @@ export class LoginComponent implements OnInit {
   username: string;
   tokenusername: string;
   tokenuserid: string;
+  tokenusernamepost: string;
+  tokenuseridpost: string;
+  tokenexpirationtime: string;
   password: string;
   invalid_password:boolean;
   valid_password:boolean;
   token:boolean;
   token_invalid:boolean;
-  constructor(private service:ConectionsService,private fb: FormBuilder,private http: FormBuilder) {
+  token_valid:boolean;
+  constructor(private service:ConectionsService,private fb: FormBuilder,private http: HttpClient) {
 
     this.formlogin = this.fb.group({
       username: ['', [Validators.required,Validators.minLength(1)
@@ -43,30 +47,53 @@ export class LoginComponent implements OnInit {
     this.service.login(loginUser).subscribe(
        (response:any) =>{
        const token = response.token;
-        localStorage.setItem('token',token);
-        localStorage.getItem('token');
+
        
       
         if(response.noresult){
           this.token_invalid=true;
         }
        if (token) {
-          const decodedToken = jwt_decode(token);
+        localStorage.setItem('token',token);
         
-          const username = decodedToken['username'];
-          const userid = decodedToken['userId'];
-          this.tokenusername=username;
-          this.tokenuserid=userid;
-          this.token_invalid=false;
+        //  console.log(decodedToken);
+       
+   
+        const decodedToken = jwt_decode(token);
+        
+       
+             
+            this.tokenusername=decodedToken['username'];
+            this.tokenuserid=decodedToken['userId'];
+            this.token_invalid=false;
+           
+          
+        
+         // this.token=true;
+          
           
         } else {
           console.log('Token not found.');  
+          this.token_valid=false;
         }
       
     });
+
    }
 
-  ngOnInit(): void {
-  }
+logout(){
+localStorage.removeItem('token');
+window.location.reload();
 
+}
+  
+
+  ngOnInit() {
+    const TokenStorage = localStorage.getItem('token');
+    const decodedToken = jwt_decode(TokenStorage);
+    this.tokenusername=decodedToken['username'];
+    this.tokenuserid=decodedToken['userId'];
+   
+   
+  }
 }

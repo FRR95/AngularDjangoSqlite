@@ -170,7 +170,6 @@ app.post('/registro', (req, res) => {
     const {password}=req.body;     
         
         
-        let sql = `SELECT * FROM usuarios WHERE nombre="${username}" and contraseña="${password}";`;
       
       
         conexion.query(`SELECT * FROM usuarios WHERE nombre='${username}' and contraseña=?;`,[password] , (err, result,rows) => {
@@ -195,16 +194,26 @@ app.post('/registro', (req, res) => {
             
           
       if (bcrypt.compare(password, user.passwordHash)) {
-           const token = jwt.sign({ userId: user.id, username: user.nombre }, secretKey='18Noviembre95', {  expiresIn: '1h' });
-           return res.json( {token} );
-          
-            
-          
-          } else {
+        const payload = {
+            userId: user.id,
+            username: user.nombre
+          };
+        
+        const oldToken = jwt.sign(payload, '18Noviembre95',{expiresIn:'10s'});
+        return res.json({ token:oldToken });
+        
+         
+
+   
+
+        } else {
             return res.status(401).json({ message: 'Invalid password' });
             }
         });
       });
+
+
+ 
 //--------------------------------------------
 
 app.listen(port, () => {
