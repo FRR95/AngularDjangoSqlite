@@ -3,6 +3,7 @@ import { ConectionsService } from 'src/app/services/conections.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 import jwt_decode from 'jwt-decode';
+import { Router, RouterModule  } from '@angular/router';
 
 
 
@@ -22,10 +23,10 @@ export class LoginComponent implements OnInit {
   password: string;
   invalid_password:boolean;
   valid_password:boolean;
-  token:boolean;
+  token_validator:boolean=false;
   token_invalid:boolean;
   token_valid:boolean;
-  constructor(private service:ConectionsService,private fb: FormBuilder,private http: HttpClient) {
+  constructor(private service:ConectionsService,private fb: FormBuilder,private http: HttpClient,private router:Router) {
 
     this.formlogin = this.fb.group({
       username: ['', [Validators.required,Validators.minLength(1)
@@ -55,6 +56,7 @@ export class LoginComponent implements OnInit {
         }
        if (token) {
         localStorage.setItem('token',token);
+        localStorage.getItem('token');
         
         //  console.log(decodedToken);
        
@@ -66,6 +68,10 @@ export class LoginComponent implements OnInit {
             this.tokenusername=decodedToken['username'];
             this.tokenuserid=decodedToken['userId'];
             this.token_invalid=false;
+            this.token_valid=true;
+            this.token_validator=true;
+            window.location.reload();
+           // this.router.navigate(['/']);
            
           
         
@@ -83,17 +89,33 @@ export class LoginComponent implements OnInit {
 
 logout(){
 localStorage.removeItem('token');
+this.token_validator=false;
 window.location.reload();
+//this.router.navigate(['/']);
 
 }
-  
-
-  ngOnInit() {
-    const TokenStorage = localStorage.getItem('token');
-    const decodedToken = jwt_decode(TokenStorage);
-    this.tokenusername=decodedToken['username'];
-    this.tokenuserid=decodedToken['userId'];
-   
-   
+TokenStorage = localStorage.getItem('token');
+local_storage(){
+  if(this.TokenStorage){
+  const decodedToken = jwt_decode(this.TokenStorage);
+  this.tokenusername=decodedToken['username'];
+  this.tokenuserid=decodedToken['userId'];
+  if(this.token_validator=true){
+    this.token_valid=true;
   }
+  else{
+    this.token_valid=false;
+  
+  }
+}
+}  
+
+ngOnInit() {
+   
+this.local_storage();
+
+}
+    
+   
+  
 }

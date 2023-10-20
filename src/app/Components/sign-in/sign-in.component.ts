@@ -2,6 +2,7 @@ import { Component, OnInit,Input } from '@angular/core';
 import { ConectionsService } from 'src/app/services/conections.service';
 import { FormBuilder,FormControl, FormGroup, Validators } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
+import { Router, RouterModule  } from '@angular/router';
 
 @Component({
   selector: 'app-sign-in',
@@ -19,7 +20,7 @@ export class SignInComponent implements OnInit {
   nameform=true;
   
 
-  constructor(private service:ConectionsService,private fb: FormBuilder,private http: HttpClient) {
+  constructor(private service:ConectionsService,private fb: FormBuilder,private http: HttpClient,private router:Router) {
     this.formsignin = this.fb.group({
       name: ['', [Validators.required,Validators.minLength(5)
       ]],
@@ -30,7 +31,9 @@ export class SignInComponent implements OnInit {
       });
    }
 
-   
+ golink(){
+this.router.navigate(['/login']);
+ }  
 addUser(){
   const valuser ={ 
     name:this.formsignin.value.name,
@@ -42,7 +45,7 @@ this.service.register(valuser).subscribe((response:any)=>{
   if (response.correoDuplicado) {
     this.correoDuplicado = true;
   } else {
-    window.location.reload();
+    this.router.navigate(['/login']);
   }
 });
        
