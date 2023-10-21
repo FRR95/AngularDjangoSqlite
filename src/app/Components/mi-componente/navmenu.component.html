@@ -17,14 +17,24 @@
                     <li class="nav-item">
                         <a class="nav-link" [routerLink]="['signin']">{{Link3}}</a>
                     </li>
-                    <div *ngIf="token_valid">
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">{{tokenusername}}</a>                    </li>
-                </div>
+                 
+                </ul>
+                <ul *ngIf="token_valid" class=" ul_user navbar-nav ">
+                <li  class="ul_user_style nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                      {{tokenusername}}
+                    </a>
+                    <ul class="dropdown-menu dropdown-menu-dark">
+                      <li><a class="dropdown-item" href="#">Perfil</a></li>
+                      <li><a class="dropdown-item" href="#">Cerrar sesión</a></li>
+                    
+                    </ul>
+                  </li>
                 </ul>
             </div>
         </div>
     </nav>
+    
 
 
 
