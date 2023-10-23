@@ -196,7 +196,10 @@ app.post('/registro', (req, res) => {
       if (bcrypt.compare(password, user.passwordHash)) {
         const payload = {
             userId: user.id,
-            username: user.nombre
+            username: user.nombre,
+            user_url: user.profile_photo,
+            user_biography: user.biography,
+            user_email: user.email,
           };
         
         const oldToken = jwt.sign(payload, '18Noviembre95',{expiresIn:'10s'});
