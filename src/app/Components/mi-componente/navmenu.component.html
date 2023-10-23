@@ -11,22 +11,23 @@
                     <li class="nav-item">
                         <a class="nav-link" [routerLink]="['/']">{{Link1}}</a>
                     </li>
-                    <li class="nav-item">
+                    
+                    <li *ngIf="!token_valid" class="nav-item">
                         <a class="nav-link" [routerLink]="['login']">{{Link2}}</a>
                     </li>
-                    <li class="nav-item">
+                    <li *ngIf="!token_valid" class="nav-item">
                         <a class="nav-link" [routerLink]="['signin']">{{Link3}}</a>
                     </li>
-                 
+                
                 </ul>
                 <ul *ngIf="token_valid" class=" ul_user navbar-nav ">
                 <li  class="ul_user_style nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                      {{tokenusername}}
+                    <a  class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                      {{user}}
                     </a>
                     <ul class="dropdown-menu dropdown-menu-dark">
-                      <li><a class="dropdown-item" href="#">Perfil</a></li>
-                      <li><a class="dropdown-item" href="#">Cerrar sesión</a></li>
+                      <li><a class="dropdown-item" [routerLink]="['/userdetails',user,user_url,user_biography,user_email]">Perfil</a></li>
+                      <li><a class="dropdown-item" (click)="logout()">Cerrar sesión</a></li>
                     
                     </ul>
                   </li>

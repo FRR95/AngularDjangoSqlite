@@ -10,7 +10,10 @@ styleUrls: ['./navmenu.component.css'],
 })
 export class NavMenu implements OnInit{
     token_valid:boolean;
-    tokenusername: string;
+    user: string;
+    user_url:string;
+    user_biography:string;
+    user_email:string;
 
 public Link1 : string;
 public Link2 : string;
@@ -30,7 +33,13 @@ TokenStorage = localStorage.getItem('token');
 local_storage(){
     if(this.TokenStorage){
     const decodedToken = jwt_decode(this.TokenStorage);
-    this.tokenusername=decodedToken['username'];
+    this.user=decodedToken['username'];
+    this.user_url=decodedToken['user_url'];
+    this.user_biography=decodedToken['user_biography'];
+    this.user_email=decodedToken['user_email'];
+
+
+    
     
     
       this.token_valid=true;
@@ -43,6 +52,10 @@ local_storage(){
     }
   
   } 
+  logout(){
+    localStorage.removeItem('token');
+    window.location.reload();
+  }
 ngOnInit() {
   this.local_storage();
 }
