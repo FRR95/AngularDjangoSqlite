@@ -101,7 +101,10 @@ getEquipos()
     {
       return this.http.post('http://localhost:3000/login', loginUser);
     }
-
+    modify_biography(modify_biography:any)
+    {
+      return this.http.put('http://localhost:3000/modify_biography', modify_biography);
+    }
 
 }
 export interface Equipo{

@@ -202,7 +202,7 @@ app.post('/registro', (req, res) => {
             user_email: user.email,
           };
         
-        const oldToken = jwt.sign(payload, '18Noviembre95',{expiresIn:'10s'});
+        const oldToken = jwt.sign(payload, '18Noviembre95',{expiresIn:'1h'});
         return res.json({ token:oldToken });
         
          
@@ -215,6 +215,28 @@ app.post('/registro', (req, res) => {
         });
       });
 
+
+      //modificar biografia
+app.put('/modify_biography', (req, res) => {
+   
+    const {userid,userbiography} = req.body;
+
+
+    let sql = `update usuarios set 
+            biography='${userbiography}'
+            where id = '${userid}'`
+
+    conexion.query(sql, (err, rows, fields) => {
+        if (err) {
+            return res.json({ error: true });
+          }
+        else {
+            res.json({ status: 'equipo modificado' })
+        }
+    })
+
+})
+//----------------------------------
 
  
 //--------------------------------------------
