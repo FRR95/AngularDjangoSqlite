@@ -14,6 +14,7 @@ export class NavMenu implements OnInit{
     user_url:string;
     user_biography:string;
     user_email:string;
+    user_id:number;
 
 public Link1 : string;
 public Link2 : string;
@@ -37,6 +38,7 @@ local_storage(){
     this.user_url=decodedToken['user_url'];
     this.user_biography=decodedToken['user_biography'];
     this.user_email=decodedToken['user_email'];
+    this.user_id=decodedToken['userId'];
 
 
     
