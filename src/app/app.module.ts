@@ -22,6 +22,7 @@ import { AddEditDepartmentComponent } from './Components/add-edit-department/add
 import { AddEditEmployeeComponent } from './Components/add-edit-employee/add-edit-employee.component';
 import { LoginComponent } from './Components/login/login.component';
 import { SignInComponent } from './Components/sign-in/sign-in.component';
+import { UserDetailsComponent } from './Components/user-details/user-details.component';
 
 
 const rutas: Routes = [
@@ -32,7 +33,9 @@ const rutas: Routes = [
   { path: 'login', component:LoginComponent },
   { path: 'edit', component:EdadesComponent },
   { path: 'addedit', component:AddEditDepartmentComponent },
+  { path: 'userdetails', component:UserDetailsComponent },
   {path:'edit/:id/:name/:logo/:img', component:EdadesComponent},
+  { path: 'userdetails/:user/:user_url/:user_biography/:user_email/:user_id', component:UserDetailsComponent },
 
 { path: '**',redirectTo:'/' ,pathMatch:'full'}
   ];
@@ -50,6 +53,7 @@ const rutas: Routes = [
     AddEditEmployeeComponent,
     LoginComponent,
     SignInComponent,
+    UserDetailsComponent,
 
     
   ],
