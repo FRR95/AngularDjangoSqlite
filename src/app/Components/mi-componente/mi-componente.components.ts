@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { LoginComponent } from 'src/app/Components/login/login.component';
 import jwt_decode from 'jwt-decode';
+import { Router, RouterModule  } from '@angular/router';
 
 @Component({
 selector:'mi-NavMenu',
@@ -23,7 +24,7 @@ public Link3 : string;
 
 
 
-constructor(){
+constructor(private router:Router){
 this.Link1="Inicio";
 this.Link2="LogIn";
 this.Link3="SignIn";
@@ -45,18 +46,21 @@ local_storage(){
     
     
       this.token_valid=true;
-      console.log('Token: '+this.TokenStorage);
+     
 
     }
     else{
       this.token_valid=false;
-      console.log('Token: '+this.TokenStorage);
+     
     }
   
   } 
   logout(){
     localStorage.removeItem('token');
-    window.location.reload();
+    this.router.navigate(['/'])
+    .then(() => {
+      window.location.reload();
+    });
   }
 ngOnInit() {
   this.local_storage();

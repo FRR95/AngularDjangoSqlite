@@ -23,7 +23,7 @@
                 <ul *ngIf="token_valid" class=" ul_user navbar-nav ">
                 <li  class="ul_user_style nav-item dropdown">
                     <a  class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                      {{user}}
+                        <i class="bi bi-person-circle"></i> {{user}}
                     </a>
                     <ul class="dropdown-menu dropdown-menu-dark">
                       <li><a class="dropdown-item" [routerLink]="['/userdetails',user,user_url,user_biography,user_email,user_id]">Perfil</a></li>
