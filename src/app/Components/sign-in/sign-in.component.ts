@@ -13,6 +13,8 @@ export class SignInComponent implements OnInit {
   formsignin:FormGroup;
   formteam:FormGroup;
   name:string;
+  name_length:number;
+  password_length1:boolean;
   email:string;
   result:any;
   password:string;
@@ -31,9 +33,7 @@ export class SignInComponent implements OnInit {
       });
    }
 
- golink(){
-this.router.navigate(['/login']);
- }  
+ 
 addUser(){
   const valuser ={ 
     name:this.formsignin.value.name,
@@ -52,10 +52,22 @@ this.service.register(valuser).subscribe((response:any)=>{
   
 }
 
+password_length(){
+this.name_length=this.formsignin.value.password.length;
+if(this.name_length>0) {
+this.password_length1=true;
+}
+else{
+  this.password_length1=false;
+}
+}
 
-
+modelChangeFn(e) {
+  this.name_length=this.formsignin.value.password.length;
+}
   ngOnInit() {
-  
+    
   }
+
 
 }

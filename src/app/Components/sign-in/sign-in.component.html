@@ -11,7 +11,7 @@
 <label class="error" *ngIf="!this.formsignin.get('password').valid"> <span class="error-message">*La contraseña tiene que tener como mínimo una letra mminuscula,una mayúscula ,un numero y tener como minimo 8 caracteres de longitud</span></label>
                 <label class="success" *ngIf="this.formsignin.get('password').valid"> <span class="error-message"><i class="bi bi-check"></i></span></label>
 
-        <input type="password" class="form-control mb-3" placeholder="password" autocomplete="off" formControlName="password">
+        <input type="password" class="form-control mb-3" (ngModelChange)="modelChangeFn($event)"   placeholder="password" autocomplete="off" formControlName="password">
         
         
     </div>
@@ -21,10 +21,14 @@
 
     <div style="color:rgb(255, 0, 0)" *ngIf="correoDuplicado" class="error-message">Este correo o el nombre de usuario ya está registrado.</div>
 </form>
+<button (click)="password_length()">length</button>
+<div *ngIf="name_length<=7"><p style="color: brown;">Contraseña floja</p></div>
+<div *ngIf="name_length==8"><p style="color: rgb(155, 42, 165);">Contraseña moderada</p></div>
+<div *ngIf="name_length>8"><p style="color: rgb(23, 218, 56);">Contraseña fuerte</p></div>
 
 </div>
 
-<button (click)="golink()">route</button>
+{{name_length}}
   
   
 
