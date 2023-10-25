@@ -10,7 +10,7 @@ import { ConectionsService } from 'src/app/services/conections.service';
 })
 export class UserDetailsComponent implements OnInit {
   formbiography:FormGroup;
-  user:string;
+  user_name:string;
   user_url:string;
   user_biography:string;
   user_email:string;
@@ -45,11 +45,12 @@ export class UserDetailsComponent implements OnInit {
     console.log('userid:'+modify_biography.userid+' userbiography:'+modify_biography.userbiography);
    }
   ngOnInit() {
-    this.user = this.route.snapshot.paramMap.get('user'); 
+    this.user_name = this.route.snapshot.paramMap.get('user'); 
     this.user_url = this.route.snapshot.paramMap.get('user_url'); 
     this.user_biography = this.route.snapshot.paramMap.get('user_biography'); 
     this.user_email = this.route.snapshot.paramMap.get('user_email'); 
     this.user_id = this.route.snapshot.paramMap.get('user_id'); 
+    
   }
 
 }

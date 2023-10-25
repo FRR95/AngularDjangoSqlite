@@ -13,7 +13,7 @@
                 <div class="card-body text-center">
                   <img src="{{user_url}}" alt="avatar"
                     class="rounded-circle img-fluid" style="width: 150px;">
-                  <h5 class="my-3">{{user}}</h5>
+                  <h5 class="my-3">{{user_name}}</h5>
                   <p class=" mb-1">{{user_biography}}</p>
 
                   <form class="container py-5" [formGroup]="formbiography"  (submit)="Modify_bio()">
@@ -39,7 +39,7 @@
                       <p class="mb-0">Full Name</p>
                     </div>
                     <div class="col-sm-9">
-                      <p class=" mb-0">{{user}}</p>
+                      <p class=" mb-0">{{user_name}}</p>
                     </div>
                   </div>
                   <hr>
