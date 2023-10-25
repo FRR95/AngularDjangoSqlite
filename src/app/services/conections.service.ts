@@ -106,6 +106,10 @@ getEquipos()
       return this.http.put('http://localhost:3000/modify_biography', modify_biography);
     }
 
+    getusertasks(user_id:string){
+      return this.http.get('http://localhost:3000/user_tasks'+'/'+user_id);
+    }
+
 }
 export interface Equipo{
   id_equipo?:string;

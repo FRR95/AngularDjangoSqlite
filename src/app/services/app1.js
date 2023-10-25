@@ -200,6 +200,7 @@ app.post('/registro', (req, res) => {
             user_url: user.profile_photo,
             user_biography: user.biography,
             user_email: user.email,
+            user:user,
           };
         
         const oldToken = jwt.sign(payload, '18Noviembre95',{expiresIn:'1h'});
@@ -215,7 +216,18 @@ app.post('/registro', (req, res) => {
         });
       });
 
+//Tareas del usuario 
 
+app.get('/user_tasks/:user_id', (req, res) => {
+    const { user_id } = req.params
+    let sql = 'select * from tareas_test where usuario_id = ?'
+    conexion.query(sql, [user_id], (err, rows, fields) => {
+        if (err) throw err;
+        else {
+            res.json(rows)
+        }
+    })
+})
       //modificar biografia
 app.put('/modify_biography', (req, res) => {
    
