@@ -228,6 +228,22 @@ app.get('/user_tasks/:user_id', (req, res) => {
         }
     })
 })
+
+//Agregar tareas
+app.post('/add_task_user/:user_id', (req, res) => {
+    const { descripcion } = req.body;
+    const  {user_id}  =req.params;
+
+    conexion.query(`insert into tareas_test(descripcion,usuario_id) values('${descripcion}','${user_id}')`,(err, rows, fields) => {
+        if (err){ 
+        res.json({ error: true });
+        console.log(err); 
+        }
+        else {
+            res.json({ status: 'Tarea agregada con exito' });
+        }
+    })
+});
       //modificar biografia
 app.put('/modify_biography', (req, res) => {
    

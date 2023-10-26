@@ -54,6 +54,21 @@
 
     <div class="token_valid">
         {{user.id}}
+        <div class="py-5">
+            <form class="container py-5" [formGroup]="formtask"  (submit)="add_user_tasks()">
+              <div class="mt-3">
+          <input type="text" class="form-control" placeholder="user" autocomplete="off"  formControlName="descripcion" >
+                  
+                  
+              </div>
+              <button type="submit" [disabled]="!formtask.valid"  class="btn mb-2">Registrarte</button>
+          
+              <div *ngIf="error">
+             error primo
+              </div>
+                
+          </form>
+          </div>
         <div *ngFor="let usertask of UserTasks">
             {{usertask.descripcion}}
 

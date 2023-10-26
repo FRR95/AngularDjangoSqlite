@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ConectionsService,Equipo } from 'src/app/services/conections.service';
 import { ToastrService } from 'ngx-toastr';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router} from '@angular/router';
 import jwt_decode from 'jwt-decode';
 import { ThisReceiver, ThrowStmt } from '@angular/compiler';
@@ -11,7 +12,8 @@ import { ThisReceiver, ThrowStmt } from '@angular/compiler';
   styleUrls: ['./department.component.css']
 })
 export class DepartmentComponent implements OnInit {
-
+  formtask:FormGroup;
+  descripcion:string;
   equipo: Equipo={
     id_equipo:'',
     nombre:'',
@@ -21,7 +23,13 @@ export class DepartmentComponent implements OnInit {
  
 
 
-  constructor(private service:ConectionsService,private toastr:ToastrService,private router:Router) { }
+  constructor(private fb: FormBuilder,private service:ConectionsService,private toastr:ToastrService,private router:Router) {
+
+    this.formtask = this.fb.group({
+      descripcion: ['', [Validators.required,Validators.minLength(1)
+      ]],
+      }) 
+   }
 
   DepartmentList:any=[];
   UserTasks:any=[];
@@ -29,6 +37,7 @@ export class DepartmentComponent implements OnInit {
   user:any=[];
   user_id:string;
   token_valid:boolean;
+  error:boolean;
 
   TokenStorage = localStorage.getItem('token');
   
@@ -38,6 +47,24 @@ export class DepartmentComponent implements OnInit {
     this.user_id=decodedToken['userId'];
 
     }
+
+    add_user_tasks(){
+      const valpost ={ 
+        descripcion:this.formtask.value.descripcion,
+       
+      
+      };
+      const decodedToken = jwt_decode(this.TokenStorage);
+      this.user_id=decodedToken['userId'];
+      this.service.addusertasks(this.user_id,valpost).subscribe((response:any)=>{
+        if (response.error) {
+          this.error = true;
+        } else {
+          window.location.reload();
+        }
+      });
+  
+      }
   local_storage(){
     if(this.TokenStorage){
     const decodedToken = jwt_decode(this.TokenStorage);
