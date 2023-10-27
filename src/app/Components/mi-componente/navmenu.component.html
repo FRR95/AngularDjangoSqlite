@@ -1,13 +1,13 @@
 <html>
 
-    <nav class="navbar navbar-expand-lg ">
+    <nav class="navbar navbar-expand-lg fixed-top ">
         <div class="container-fluid">
-            <a class="navbar-brand text-white" [routerLink]="['/']">Navbar</a>
+            <a class=" d-flex justify-content-start navbar-brand text-white" [routerLink]="['/']">Navbar</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
             <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav mx-auto">
+                <ul class="d-flex justify-content-center navbar-nav mx-auto">
                     <li class="nav-item">
                         <a class="nav-link" [routerLink]="['/']">{{Link1}}</a>
                     </li>
@@ -20,10 +20,10 @@
                     </li>
                 
                 </ul>
-                <ul *ngIf="token_valid" class=" ul_user navbar-nav ">
-                <li  class="ul_user_style nav-item dropdown">
+                <ul *ngIf="token_valid" class=" d-flex justify-content-end  navbar-nav ">
+                <li  class=" nav-item dropdown">
                     <a  class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                        <i class="bi bi-person-circle"></i> {{user.email}}
+                        <i class="bi bi-person-circle"></i> {{user.nombre}}
                     </a>
                    
                      

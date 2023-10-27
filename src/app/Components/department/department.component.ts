@@ -14,6 +14,7 @@ import { ThisReceiver, ThrowStmt } from '@angular/compiler';
 export class DepartmentComponent implements OnInit {
   formtask:FormGroup;
   descripcion:string;
+  task_length:number;
   equipo: Equipo={
     id_equipo:'',
     nombre:'',
@@ -65,6 +66,10 @@ export class DepartmentComponent implements OnInit {
       });
   
       }
+
+      modelChangeFn(e) {
+        this.task_length=this.formtask.value.descripcion.length;
+      }
   local_storage(){
     if(this.TokenStorage){
     const decodedToken = jwt_decode(this.TokenStorage);
@@ -94,8 +99,8 @@ export class DepartmentComponent implements OnInit {
 
 
   ngOnInit():void {
-  this.DepList()
-  this.TeamList()
+  //this.DepList()
+  //this.TeamList()
   this.local_storage()
 
   }

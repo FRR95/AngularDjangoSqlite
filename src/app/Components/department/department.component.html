@@ -32,7 +32,7 @@
     
 
 
-<div class="container py-5">
+<!--<div class="container py-5">
     <div *ngFor="let equipo of ListarEquipo">
         <div class="card" style="width: 500px;">
             <div class="row no-gutters">
@@ -50,29 +50,37 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div>-->
 
-    <div class="token_valid">
-        {{user.id}}
-        <div class="py-5">
-            <form class="container py-5" [formGroup]="formtask"  (submit)="add_user_tasks()">
+    <div class="pt-4" *ngIf="token_valid">
+          
+        <div class="form_box mx-5 px-5 py-4 ">
+            <form class=" my-2 " [formGroup]="formtask"  (submit)="add_user_tasks()">
               <div class="mt-3">
-          <input type="text" class="form-control" placeholder="user" autocomplete="off"  formControlName="descripcion" >
+            <label> <img src="{{user.profile_photo}}" class="rounded-circle"> <p>¿En que estas pensando {{user.nombre}}?</p></label>
+          <input type="text" class="form-control" (ngModelChange)="modelChangeFn($event)" maxlength="100" autocomplete="off"  formControlName="descripcion" >
                   
                   
               </div>
-              <button type="submit" [disabled]="!formtask.valid"  class="btn mb-2">Registrarte</button>
+              <button type="submit" [disabled]="!formtask.valid"  class="btn btn-outline-info mt-2 mb-2">Publicar</button>
           
               <div *ngIf="error">
-             error primo
+             error al ingresar la tarea
               </div>
-                
+        <p class="d-flex justify-content-end">{{task_length}}/100</p>  
           </form>
           </div>
-        <div *ngFor="let usertask of UserTasks">
-            {{usertask.descripcion}}
-
-        </div>
+      
+             <div *ngFor="let usertask of UserTasks" class="container py-5">
+            <div  class="card" >
+                <div class="card-body">
+                    <img src="{{user.profile_photo}}" class=" card-title rounded-circle">
+                  <h6 class="card-subtitle mb-2 text-body-secondary">{{user.nombre}}</h6>
+                  <p class="card-text d-flex justify-content-center">{{usertask.descripcion}}</p>
+                </div>
+              </div>
+            </div>
+        
     </div>
 
 
