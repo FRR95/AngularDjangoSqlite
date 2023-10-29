@@ -220,7 +220,7 @@ app.post('/registro', (req, res) => {
 
 app.get('/user_tasks/:user_id', (req, res) => {
     const { user_id } = req.params
-    let sql = 'select * from tareas_test where usuario_id = ?'
+    let sql = 'select * from tareas_test_date where usuario_id = ?'
     conexion.query(sql, [user_id], (err, rows, fields) => {
         if (err) throw err;
         else {
@@ -234,7 +234,7 @@ app.post('/add_task_user/:user_id', (req, res) => {
     const { descripcion } = req.body;
     const  {user_id}  =req.params;
 
-    conexion.query(`insert into tareas_test(descripcion,usuario_id) values('${descripcion}','${user_id}')`,(err, rows, fields) => {
+    conexion.query(`insert into tareas_test_date(descripcion,usuario_id) values('${descripcion}','${user_id}')`,(err, rows, fields) => {
         if (err){ 
         res.json({ error: true });
         console.log(err); 
