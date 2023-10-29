@@ -43,11 +43,7 @@ export class DepartmentComponent implements OnInit {
   TokenStorage = localStorage.getItem('token');
   
 
-  get_user_tasks(){
-    const decodedToken = jwt_decode(this.TokenStorage);
-    this.user_id=decodedToken['userId'];
 
-    }
 
     add_user_tasks(){
       const valpost ={ 
@@ -101,7 +97,8 @@ export class DepartmentComponent implements OnInit {
   ngOnInit():void {
   //this.DepList()
   //this.TeamList()
-  this.local_storage()
+  this.local_storage();
+ 
 
   }
 

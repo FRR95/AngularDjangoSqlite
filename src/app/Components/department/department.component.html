@@ -52,11 +52,11 @@
         </div>
     </div>-->
 
-    <div class="pt-4" *ngIf="token_valid">
+    <div class="container  form_tweet" *ngIf="token_valid">
           
-        <div class="form_box mx-5 px-5 py-4 ">
-            <form class=" my-2 " [formGroup]="formtask"  (submit)="add_user_tasks()">
-              <div class="mt-3">
+        <div class="form_box ">
+            <form class="p-4  " [formGroup]="formtask"  (submit)="add_user_tasks()">
+              <div class="">
             <label> <img src="{{user.profile_photo}}" class="rounded-circle"> <p>¿En que estas pensando {{user.nombre}}?</p></label>
           <input type="text" class="form-control" (ngModelChange)="modelChangeFn($event)" maxlength="100" autocomplete="off"  formControlName="descripcion" >
                   
@@ -71,32 +71,25 @@
           </form>
           </div>
       
-             <div *ngFor="let usertask of UserTasks" class="container py-5">
-            <div  class="card" >
+             <div *ngFor="let usertask of UserTasks" >
+            <div  class="card container mt-4 " >
                 <div class="card-body">
                     <img src="{{user.profile_photo}}" class=" card-title rounded-circle">
                   <h6 class="card-subtitle mb-2 text-body-secondary">{{user.nombre}}</h6>
                   <p class="card-text d-flex justify-content-center">{{usertask.descripcion}}</p>
+                  <p class="card-text d-flex justify-content-end">Subido el: {{usertask.post_date}}</p>
                 </div>
               </div>
             </div>
         
     </div>
 
-
-
-<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Añade o edita un empleado</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <app-add-edit-department></app-add-edit-department>
-            </div>
-        </div>
-    </div>
+<div class="py-5" *ngIf="!token_valid">
+    <p class=" mt-5 d-flex justify-content-center"><a [routerLink]="['signin']">Regístrate	</a>&#160;o <a [routerLink]="['login']">&#160;inicia sesión&#160;</a>para ver todas las novedades </p>
 </div>
+
+
+
+
 
 </html>

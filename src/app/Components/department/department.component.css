@@ -12,8 +12,16 @@
 
 .form_box{
     border: 1px solid rgb(148, 217, 245);
-    background-color: rgb(14, 14, 14);   
+    background-color: rgb(14, 14, 14);  
+    margin-bottom: 10rem; 
 }
 p{
 color: white;
+}
+a{
+text-decoration: none;
+}
+.form_tweet{
+padding-top: 5rem;
+padding-bottom: 5rem;
 }
