@@ -22,3 +22,12 @@ border-radius:6px;
         border-radius: 6px;
 
      }
+
+     .signin-form{
+        padding-top: 10rem;
+        padding-bottom: 10rem;
+         }
+
+         p{
+            color: white;
+         }
