@@ -12,6 +12,7 @@ export class UserDetailsComponent implements OnInit {
   formbiography:FormGroup;
   user_name:string;
   user_url:string;
+  UserTasks:any=[];
   user_biography:string;
   user_email:string;
   user_id:string;
@@ -50,7 +51,11 @@ export class UserDetailsComponent implements OnInit {
     this.user_biography = this.route.snapshot.paramMap.get('user_biography'); 
     this.user_email = this.route.snapshot.paramMap.get('user_email'); 
     this.user_id = this.route.snapshot.paramMap.get('user_id'); 
-    
+
+    this.service.getusertasks(this.user_id).subscribe(data=>{
+      this.UserTasks=data;
+      
+      })
   }
 
 }
