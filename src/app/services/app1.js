@@ -220,13 +220,26 @@ app.post('/registro', (req, res) => {
 
 app.get('/user_tasks/:user_id', (req, res) => {
     const { user_id } = req.params
-    let sql = 'select * from tareas_test_date where usuario_id = ?'
+    let sql = 'SELECT * FROM tareas_test_date where usuario_id = ?'
     conexion.query(sql, [user_id], (err, rows, fields) => {
         if (err) throw err;
         else {
             res.json(rows)
         }
     })
+})
+
+//Tareas de todos los usuarios
+app.get('/user_tasks1', (req, res) => {
+    let sql = 'SELECT * FROM usuarios INNER JOIN tareas_test_date ON usuarios.id=tareas_test_date.usuario_id';
+    conexion.query(sql, (err, rows, result) => {
+        if (err) throw err;
+        else {
+            res.json(rows);
+            
+        }
+    })
+
 })
 
 //Agregar tareas

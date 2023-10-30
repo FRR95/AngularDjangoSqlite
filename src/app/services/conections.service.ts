@@ -109,6 +109,9 @@ getEquipos()
     getusertasks(user_id:string){
       return this.http.get('http://localhost:3000/user_tasks'+'/'+user_id);
     }
+    getusertasks1(){
+      return this.http.get('http://localhost:3000/user_tasks1');
+    }
 
     addusertasks(user_id:string,valpost:any){
       return this.http.post('http://localhost:3000/add_task_user'+'/'+user_id,valpost);
