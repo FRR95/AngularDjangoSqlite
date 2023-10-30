@@ -71,16 +71,17 @@
           </form>
           </div>
       
-             <div *ngFor="let usertask of UserTasks" >
+             <div *ngFor="let usertask of UserTasks1" >
             <div  class="card container mt-4 " >
                 <div class="card-body">
                     <img src="{{user.profile_photo}}" class=" card-title rounded-circle">
-                  <h6 class="card-subtitle mb-2 text-body-secondary">{{user.nombre}}</h6>
+                  <h6 class="card-subtitle mb-2 text-body-secondary">{{usertask.nombre}}</h6>
                   <p class="card-text d-flex justify-content-center">{{usertask.descripcion}}</p>
-                  <p class="card-text d-flex justify-content-end">Subido el: {{usertask.post_date}}</p>
+                  <p class="card-text d-flex justify-content-end ">Subido el: {{usertask.post_date}}</p>
                 </div>
               </div>
             </div>
+        
         
     </div>
 

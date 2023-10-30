@@ -34,6 +34,7 @@ export class DepartmentComponent implements OnInit {
 
   DepartmentList:any=[];
   UserTasks:any=[];
+  UserTasks1:any=[];
   ListarEquipo:any=[];
   user:any=[];
   user_id:string;
@@ -75,8 +76,14 @@ export class DepartmentComponent implements OnInit {
 
     this.service.getusertasks(this.user_id).subscribe(data=>{
       this.UserTasks=data;
-      console.log(this.UserTasks);
+      
       })
+      
+      this.service.getusertasks1().subscribe(data=>{
+        this.UserTasks1=data;
+        
+       
+        })
     
     
     
