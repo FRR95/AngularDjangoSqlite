@@ -1,13 +1,13 @@
 <html>
 
-    <nav class="navbar navbar-expand-lg fixed-top ">
+ <nav class="navbar navbar-expand-lg fixed-top justify-content-between ">
         <div class="container-fluid">
-            <a class=" d-flex justify-content-start navbar-brand text-white" [routerLink]="['/']">Navbar</a>
+            <a class="  navbar-brand text-white" [routerLink]="['/']">Navbar</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="d-flex justify-content-center navbar-nav mx-auto">
+            <div class="collapse navbar-collapse d-flex justify-content-center" id="navbarNav">
+                <ul class=" navbar-nav  ">
                     <li class="nav-item">
                         <a class="nav-link" [routerLink]="['/']">{{Link1}}</a>
                     </li>
@@ -20,7 +20,8 @@
                     </li>
                 
                 </ul>
-                <ul *ngIf="token_valid" class=" d-flex justify-content-end  navbar-nav ">
+            </div>
+                <ul *ngIf="token_valid" class=" d-flex justify-content-end me-5  navbar-nav ">
                 <li  class=" nav-item dropdown">
                     <a  class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                         <i class="bi bi-person-circle"></i> {{user.nombre}}
@@ -35,7 +36,7 @@
                     </ul>
                   </li>
                 </ul>
-            </div>
+            
         </div>
     </nav>
     

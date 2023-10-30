@@ -19,6 +19,11 @@
  .container{
     border: 1px solid rgb(255, 255, 255);
     border-radius: 6px;
+
+ }
+ .login-form{
+padding-top: 10rem;
+padding-bottom: 10rem;
  }
  p{
 color:white;
