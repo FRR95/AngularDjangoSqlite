@@ -27,7 +27,16 @@ const port = process.env.PORT || 3000;
 
 
 
+const validApiKeys = ['123456'];
 
+// Middleware to validate API key.
+function apiKeyValidator(req, res, next) {
+  const apiKey = req.headers['x-api-key'];
+  if (!apiKey || !validApiKeys.includes(apiKey)) {
+    return res.status(401).json({ error: 'Unauthorized' });
+  }
+  next();
+}
 
 
 const storage = multer.diskStorage({
@@ -230,7 +239,7 @@ app.get('/user_tasks/:user_id', (req, res) => {
 })
 
 //Tareas de todos los usuarios
-app.get('/user_tasks1', (req, res) => {
+app.get('/user_tasks1',apiKeyValidator, (req, res) => {
     let sql = 'SELECT * FROM usuarios INNER JOIN tareas_test_date ON usuarios.id=tareas_test_date.usuario_id';
     conexion.query(sql, (err, rows, result) => {
         if (err) throw err;
@@ -254,6 +263,18 @@ app.post('/add_task_user/:user_id', (req, res) => {
         }
         else {
             res.json({ status: 'Tarea agregada con exito' });
+        }
+    })
+});
+
+//Borrar tareas
+app.delete('/delete_tarea/:id', (req, res) => {
+    const { id } = req.params;
+    let sql = `delete from tareas_test_date where id = '${id}'`
+    conexion.query(sql, (err, rows, fields) => {
+        if (err) throw err
+        else {
+            res.json({ status: 'equipo eliminado:' })
         }
     })
 });
