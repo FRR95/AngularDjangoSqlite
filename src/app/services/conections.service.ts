@@ -110,13 +110,15 @@ getEquipos()
       return this.http.get('http://localhost:3000/user_tasks'+'/'+user_id);
     }
     getusertasks1(){
-      return this.http.get('http://localhost:3000/user_tasks1');
+      return this.http.get('http://localhost:3000/user_tasks1',{headers:{'x-api-key':'123456'}});
     }
 
     addusertasks(user_id:string,valpost:any){
       return this.http.post('http://localhost:3000/add_task_user'+'/'+user_id,valpost);
     }
-
+    DeleteTarea(id:string){
+      return this.http.delete('http://localhost:3000/delete_tarea'+'/'+id);
+    }
 }
 export interface Equipo{
   id_equipo?:string;
