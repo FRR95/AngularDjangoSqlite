@@ -4,13 +4,22 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 import jwt_decode from 'jwt-decode';
 import { Router, RouterModule  } from '@angular/router';
+import { trigger, state, style, animate, transition } from '@angular/animations';
 
 
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css']
+  styleUrls: ['./login.component.css'],
+  animations: [
+    trigger('foobar', [
+      state('show', style({opacity: 1,transform: "translateX(0)"})),
+      state('hide', style({opacity: 0,transform: "translateX(-100%)"})),
+      transition('show => hide', animate('700ms ease-out')),
+      transition('hide => show', animate('700ms ease-in'))
+    ])
+  ]
 })
 export class LoginComponent implements OnInit {
   formlogin:FormGroup;
@@ -25,6 +34,7 @@ export class LoginComponent implements OnInit {
   valid_password:boolean;
   token_valid:boolean;
   token_invalid:boolean;
+  state= 'hide';
 
   constructor(private service:ConectionsService,private fb: FormBuilder,private http: HttpClient,private router:Router) {
 
@@ -70,8 +80,7 @@ export class LoginComponent implements OnInit {
             
          
         
-            this.router.navigate(['/'])
-            .then(() => {
+            this.router.navigate(['/']).then(() => {
               window.location.reload();
             });
            
@@ -90,28 +99,20 @@ export class LoginComponent implements OnInit {
    }
 
 
-/*TokenStorage = localStorage.getItem('token');
-local_storage(){
-  if(this.TokenStorage){
-  const decodedToken = jwt_decode(this.TokenStorage);
-  this.tokenusername=decodedToken['username'];
-  this.tokenuserid=decodedToken['userId'];
-  if(this.token_validator=true){
-    this.token_valid=true;
-  }
-  else{
-    this.token_valid=false;
-  
-  }
-}
-}  */
-
+TokenStorage = localStorage.getItem('token');
+ 
+ngAfterViewInit() {
+ 
+ 
+ }
 ngOnInit() {
    
-//this.local_storage();
 
-}
+  this.service.getusertasks1().subscribe(data=>{
     
+    this.state = 'show';
    
-  
+    })   
+   
+}  
 }

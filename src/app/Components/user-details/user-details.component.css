@@ -3,6 +3,11 @@ background-color: rgb(14, 14, 14);
 border: solid 1px rgb(255, 255, 255);
 color: white;
 }
+.user_posts{
+    background-color: rgb(14, 14, 14);
+    border: solid 1px rgb(148, 217, 245);
+    color: white;
+    }
 .rounded-circle-tweets{
     width:60px;
      height:60px;
