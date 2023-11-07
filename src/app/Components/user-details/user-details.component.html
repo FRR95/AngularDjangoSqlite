@@ -64,7 +64,7 @@
                               <img src="{{user_url}}" class=" card-title rounded-circle rounded-circle-tweets">
                             <h6 class="card-subtitle mb-2 text-body-secondary">{{user_name}}</h6>
                             <p class="card-text d-flex justify-content-center">{{usertask.descripcion}}</p>
-                            <p class="card-text d-flex justify-content-end ">Subido el: {{usertask.post_date}}</p>
+                            <p class="card-text d-flex justify-content-end ">Subido el: {{usertask.year_of_post}}</p>
                             <button (click)="eliminar(usertask.id)" type="button" class="btn me-1 btn-danger"><i class="bi bi-trash3"></i> </button>
                           </div>
                         </div>
@@ -74,8 +74,22 @@
                       </div>
                   </div>
                 </div>
+         
        
               </div>
+            </div>
+          </div>
+          <div class="col-md-12 ">
+            <div class="card mb-4 mb-md-0">
+         
+              
+                <div  class="card container  user_posts   " [@foobar2]='state2'  >
+                    <div class="card-body">
+                      <canvasjs-chart [options]="PieChartCovidCases"></canvasjs-chart>
+                    </div>
+                  </div>
+               
+            
             </div>
           </div>
         </div>

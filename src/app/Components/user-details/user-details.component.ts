@@ -29,6 +29,8 @@ export class UserDetailsComponent implements OnInit {
   user_name:string;
   user_url:string;
   UserTasks:any=[];
+  CovidData:any=[];
+  UserTasksDataChart:any=[];
   user_biography:string;
   user_email:string;
   user_id:string;
@@ -71,11 +73,49 @@ export class UserDetailsComponent implements OnInit {
       window.location.reload();
        });
    }
-
+covid_data(){
+  this.user_id = this.route.snapshot.paramMap.get('user_id'); 
+ this.service.getusertasks(this.user_id).subscribe((response: any) => {
+ this.UserTasks=response;
+ this.UserTasks.forEach((data:any,result:any) => {
+  this.UserTasksDataChart.push({
+    label: data.year_of_post,
+    y: data.number_of_posts,
+  });
+});
+ })
+}
    ngAfterViewInit() {
     
    
 }
+
+PieChartCovidCases = {
+  animationEnabled: false,
+  theme: 'light2',
+  backgroundColor: "#0e0e0e",
+  title: {
+    text: 'Estadisticas de usuario',
+    fontColor: "white",
+  },
+  axisX: {
+    title: 'Año',
+    reversed: true,
+  },
+  axisY: {
+    title: 'Numero de Posts',
+    labelFormatter: function (e: any) {
+      return e.value ;
+    },
+  },
+  data: [
+    {
+      type: 'column',
+      
+      dataPoints: this.UserTasksDataChart,
+    },
+  ],
+};
   ngOnInit() {
     this.user_name = this.route.snapshot.paramMap.get('user'); 
     this.user_url = this.route.snapshot.paramMap.get('user_url'); 
@@ -89,7 +129,7 @@ export class UserDetailsComponent implements OnInit {
      this.state = 'show';
     this.state2 = 'enter';
       })
-         
+    this.covid_data();     
   }
 
 }
