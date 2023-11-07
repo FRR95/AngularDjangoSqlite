@@ -23,6 +23,8 @@ import { AddEditEmployeeComponent } from './Components/add-edit-employee/add-edi
 import { LoginComponent } from './Components/login/login.component';
 import { SignInComponent } from './Components/sign-in/sign-in.component';
 import { UserDetailsComponent } from './Components/user-details/user-details.component';
+import * as CanvasJSAngularChart from '../assets/canvasjs.angular.component';
+var CanvasJSChart = CanvasJSAngularChart.CanvasJSChart;
 
 
 const rutas: Routes = [
@@ -53,6 +55,7 @@ const rutas: Routes = [
     AddEditEmployeeComponent,
     LoginComponent,
     SignInComponent,
+    CanvasJSChart,
     UserDetailsComponent,
 
     
