@@ -228,8 +228,9 @@ app.post('/registro', (req, res) => {
 //Tareas del usuario 
 
 app.get('/user_tasks/:user_id', (req, res) => {
-    const { user_id } = req.params
-    let sql = 'SELECT * FROM tareas_test_date where usuario_id = ?'
+    const { user_id } = req.params;
+    let sql = 'SELECT descripcion,YEAR(post_date)  AS  year_of_post,COUNT(descripcion) AS number_of_posts FROM tareas_test_date where usuario_id = ?';
+
     conexion.query(sql, [user_id], (err, rows, fields) => {
         if (err) throw err;
         else {
@@ -237,6 +238,7 @@ app.get('/user_tasks/:user_id', (req, res) => {
         }
     })
 })
+
 
 //Tareas de todos los usuarios
 app.get('/user_tasks1',apiKeyValidator, (req, res) => {
