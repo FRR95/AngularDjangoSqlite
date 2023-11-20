@@ -13,6 +13,7 @@ export class ConectionsService {
 readonly APIUrl = "http://127.0.0.1:8000";
 readonly PhotoUrl = 'http://127.0.0.1:8000/media/';
 url='/api';
+favoriteslist1: any[]=[];
 
 
   constructor(private http:HttpClient) { }
@@ -119,6 +120,17 @@ getEquipos()
     DeleteTarea(id:string){
       return this.http.delete('http://localhost:3000/delete_tarea'+'/'+id);
     }
+//add to favorites
+obtenermisfavoritos() {
+    
+  return this.favoriteslist1;
+}
+addtofavorites(favoriteslist:any[]){
+  this.favoriteslist1.push(favoriteslist);
+}
+
+
+
 }
 export interface Equipo{
   id_equipo?:string;

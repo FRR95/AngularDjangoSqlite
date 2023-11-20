@@ -1,7 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { ConectionsService } from 'src/app/services/conections.service';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-employee',
@@ -11,21 +9,17 @@ import { ToastrService } from 'ngx-toastr';
 export class EmployeeComponent implements OnInit {
   
   formValue:any;
-  constructor(private service:ConectionsService,private fb: FormBuilder) {
-
+  constructor(private service:ConectionsService) {
+    
    }
-
-  EmployeeList:any=[];
+  favoritepost= this.service.obtenermisfavoritos();
+  
 
 
   ngOnInit(): void {
-    this.EmpList();
+   
     
   }
 
-  EmpList(){
-    this.service.getEmpList().subscribe(data=>{
-    this.EmployeeList=data;
-    })
-    }
+
 }

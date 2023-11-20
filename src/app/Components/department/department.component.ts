@@ -15,6 +15,7 @@ export class DepartmentComponent implements OnInit {
   formtask:FormGroup;
   descripcion:string;
   task_length:number;
+  task:string;
   equipo: Equipo={
     id_equipo:'',
     nombre:'',
@@ -66,6 +67,7 @@ export class DepartmentComponent implements OnInit {
 
       modelChangeFn(e) {
         this.task_length=this.formtask.value.descripcion.length;
+        this.task=this.formtask.value.descripcion;
       }
   local_storage(){
     if(this.TokenStorage){
@@ -74,10 +76,7 @@ export class DepartmentComponent implements OnInit {
     this.user=decodedToken['user'];
     this.user_id=decodedToken['userId'];
 
-    this.service.getusertasks(this.user_id).subscribe(data=>{
-      this.UserTasks=data;
-      
-      })
+ 
       
       this.service.getusertasks1().subscribe(data=>{
         this.UserTasks1=data;
@@ -97,6 +96,11 @@ export class DepartmentComponent implements OnInit {
     }
   
   } 
+  addtofavorites(favorites:any[]){
+    this.service.addtofavorites(favorites);
+   
+
+    }
 
 
 

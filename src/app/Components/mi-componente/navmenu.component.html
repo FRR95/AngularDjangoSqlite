@@ -18,6 +18,9 @@
                     <li *ngIf="!token_valid" class="nav-item">
                         <a class="nav-link" [routerLink]="['signin']">{{Link3}}</a>
                     </li>
+                    <li *ngIf="token_valid" class="nav-item">
+                        <a class="nav-link" [routerLink]="['Employees']">Mis favoritos</a>
+                    </li>
                 
                 </ul>
             </div>
